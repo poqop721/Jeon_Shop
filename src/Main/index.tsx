@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ItemCard from "./components/ItemCard";
 
-interface Products{
+export interface Products{
     id : number,
     title : string,
     description : string,
@@ -43,7 +43,7 @@ export default function Main() {
                 <input type="text" placeholder="상품 제목 입력" value={inputText} onChange={onChangeInputText}/>
                 <input type="submit" value="검색" />
             </form>
-            <div>{products.map((item : any)=>(
+            <div>{products.map((item : Products)=>(
                 <ItemCard key={item.id} item={item} />
             ))}</div>
         </div>
