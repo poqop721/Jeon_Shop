@@ -43,8 +43,8 @@ export default function Main() {
                 <input type="text" placeholder="상품 제목 입력" value={inputText} onChange={onChangeInputText}/>
                 <input type="submit" value="검색" />
             </form>
-            <div>{products.map((item : any, idx : number)=>(
-                <ItemCard key={idx} item={item} />
+            <div>{products.map((item : any)=>(
+                <ItemCard key={item.id} item={item} />
             ))}</div>
         </div>
     )
