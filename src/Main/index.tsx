@@ -23,8 +23,7 @@ export default function Main() {
     const moreButton = useRef<HTMLButtonElement>(null)
 
     useEffect(()=>{
-        console.log(limit)
-        fetch(`https://dummyjson.com/products/search?q=${keyword}&limit=${limit}&select=id,thumbnail,title,brand,price`)
+        fetch(`${process.env.REACT_APP_API_URL}/search?q=${keyword}&limit=${limit}&select=id,thumbnail,title,brand,price`)
         .then(res => res.json())
         .then(data => {
             setProducts(data.products)
