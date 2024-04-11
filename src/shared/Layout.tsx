@@ -32,7 +32,7 @@ const HeaderStyles = {
   function Header() {
     return (
       <div style={{ ...HeaderStyles }}>
-        <span>Sparta Coding Club - Let's learn React</span>
+        <span>Jeon Shop</span>
       </div>
     );
   }
@@ -40,7 +40,7 @@ const HeaderStyles = {
   function Footer() {
     return (
       <div style={{ ...FooterStyles }}>
-        <span>copyright @SCC</span>
+        <span>Jeon Shop</span>
       </div>
     );
   }

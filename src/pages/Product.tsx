@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Item } from "./Home"
-import styled from "styled-components"
+import { CardInfo } from "../components/CardStyle"
 
 export default function Product() {
     const { id } = useParams()
@@ -21,7 +21,7 @@ export default function Product() {
     }, [id])
 
     return (
-        <div>
+        <CardInfo>
             <button onClick={()=>{navigate("/")}}>목록으로 돌아가기</button>
             <img src={item?.thumbnail} alt="thumbnail"/>
             <p>brand : {item?.brand}</p>
@@ -31,6 +31,6 @@ export default function Product() {
             {item?.images?.map((url,idx)=>{
                 return(<img key={idx} src={url} alt="images" />)
             })}
-        </div>
+        </CardInfo>
     )
 }

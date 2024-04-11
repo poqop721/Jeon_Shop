@@ -21,3 +21,12 @@ export const CardsItem = styled.li`
     }
     cursor : pointer;
     `
+
+export const CardInfo = styled.div`
+    padding : 2em;
+    display:flex;
+    flex-direction : column;
+    justify-contents:center;
+    align-items:center;
+    gap : 1em;
+    `
