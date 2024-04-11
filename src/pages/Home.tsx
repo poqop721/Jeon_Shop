@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import ItemCard from "./components/ItemCard";
-import { CardsWrapper } from "./components/CardStyle";
+import ItemCard from "../components/ItemCard";
+import { CardsWrapper } from "../components/CardStyle";
 
-export interface Product {
+export interface Item {
     id: number,
     title: string,
     price: number,
@@ -18,7 +18,7 @@ export interface Product {
 
 export default function Main() {
     const [inputText, setInputText] = useState<string>('')
-    const [products, setProducts] = useState<Product[]>([])
+    const [products, setProducts] = useState<Item[]>([])
     const [limit, setLimit] = useState<number>(10)
     const [keyword, setKeyword] = useState<string>('')
     const moreButton = useRef<HTMLButtonElement>(null)
@@ -65,7 +65,7 @@ export default function Main() {
                 <input type="submit" value="검색" />
             </form>
             <CardsWrapper>
-                {products.map((item: Product) => (
+                {products.map((item: Item) => (
                     <ItemCard key={item.id} item={item} />
                 ))}
             </CardsWrapper>
