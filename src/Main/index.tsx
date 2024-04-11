@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ItemCard from "./components/ItemCard";
-import styled from "styled-components";
+import { CardsWrapper } from "./components/CardStyle";
 
 export interface Product {
     id: number,
@@ -56,14 +56,6 @@ export default function Main() {
         setLimit(limit + 10)
     }
 
-    const CardsWrapper = styled.div`
-        width: 90%;
-        padding: 4rem;
-        display : grid;
-        grid-template-columns : repeat(2,1fr);
-        gap : 2em 1.5em;
-        margin: 50px 0;
-    `
 
     return (
         <div>
