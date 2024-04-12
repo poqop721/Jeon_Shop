@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ItemCard from "../components/ItemCard";
 import { CardsWrapper } from "../components/CardStyle";
+import { useRecordScroll } from "../hooks/useRecordScroll";
 
 export interface Item {
     id: number,
@@ -22,6 +23,7 @@ export default function Main() {
     const [limit, setLimit] = useState<number>(10)
     const [keyword, setKeyword] = useState<string>('')
     const moreButton = useRef<HTMLButtonElement>(null)
+    const scrollY = useRecordScroll()
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/search?q=${keyword}&limit=${limit}&select=id,thumbnail,title,brand,price`)
@@ -40,6 +42,7 @@ export default function Main() {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
                 console.log(error)
             })
+            window.scrollTo(0,scrollY)
     }, [limit, keyword])
 
     const search = (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,7 +58,6 @@ export default function Main() {
     const seeMore = () => {
         setLimit(limit + 10)
     }
-
 
     return (
         <div>

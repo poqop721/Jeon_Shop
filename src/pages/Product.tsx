@@ -18,6 +18,7 @@ export default function Product() {
                     console.error("There was an error!", error)
                 });
         }
+        window.scrollTo(0,0)
     }, [id])
 
     return (
