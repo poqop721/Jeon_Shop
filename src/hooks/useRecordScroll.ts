@@ -1,23 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useMemo } from "react";
 import { useAtom } from 'jotai'
 import { scrollYAtom } from "../atoms/prevPageAtom";
 
 export const useRecordScroll = () => {
-    const { pathname } = useLocation()
     const [scrollY,setScrollY] = useAtom<number>(scrollYAtom)
 
     const handleScroll = () => {
-        if(pathname === '/'){
-            throttle(()=>{
-                setScrollY(window.scrollY)
-            },300)()
-        }
+        throttle(()=>{
+            setScrollY(window.scrollY)
+        },300)()
     }
-
-    // useEffect(()=>{
-    //     console.log(curScroll)
-    // },[curScroll])
 
     const throttle = (callback : Function, delay : number) => {
         let timerId : NodeJS.Timeout | null
