@@ -37,12 +37,12 @@ export default function Main() {
                         moreButton.current.style.display = 'block'
                     }
                 }
+                window.scrollTo(0,scrollY)
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
                 console.log(error)
             })
-            window.scrollTo(0,scrollY)
     }, [limit, keyword])
 
     const search = (e: React.FormEvent<HTMLFormElement>) => {
