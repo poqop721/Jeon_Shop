@@ -11,6 +11,7 @@ const ImageDiv = styled.div`
   background-repeat: no-repeat;
   overflow: hidden;
   border-radius:10px;
+  box-shadow:inset 0px 1px 13px #bdbdbd;
 `
 
 const Image = styled.img`
