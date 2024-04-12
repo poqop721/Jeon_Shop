@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import ItemCard from "../components/ItemCard";
 import { CardsWrapper } from "../components/CardStyle";
 import { useRecordScroll } from "../hooks/useRecordScroll";
+import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
+import { useAtom } from "jotai";
 
 export interface Item {
     id: number,
@@ -18,10 +20,10 @@ export interface Item {
 }
 
 export default function Main() {
-    const [inputText, setInputText] = useState<string>('')
+    const [keyword, setKeyword] = useAtom<string>(keywordAtom)
+    const [inputText, setInputText] = useState<string>(keyword)
+    const [limit, setLimit] = useAtom<number>(limitAtom)
     const [products, setProducts] = useState<Item[]>([])
-    const [limit, setLimit] = useState<number>(10)
-    const [keyword, setKeyword] = useState<string>('')
     const moreButton = useRef<HTMLButtonElement>(null)
     const scrollY = useRecordScroll()
 
