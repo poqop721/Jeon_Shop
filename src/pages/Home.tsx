@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import ItemCard from "../components/ItemCard";
-import { CardsWrapper } from "../components/CardStyle";
+import { CardsWrapper } from "../styleComponents/CardStyle";
 import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
+import CustomInput from "../components/CustomInput";
+import { Form } from "../styleComponents/FormStyle";
+import { SeeMoreButton, SubmitButton } from "../styleComponents/CustomButtons";
+import { Container } from "../styleComponents/Container";
 
 export interface Item {
     id: number,
@@ -24,6 +28,7 @@ export default function Main() {
     const [inputText, setInputText] = useState<string>(keyword)
     const [limit, setLimit] = useAtom<number>(limitAtom)
     const [products, setProducts] = useState<Item[]>([])
+    const [isEnd, setIsEnd] = useState<boolean>(false)
     const moreButton = useRef<HTMLButtonElement>(null)
     const scrollY = useRecordScroll()
 
@@ -34,9 +39,9 @@ export default function Main() {
                 setProducts(data.products)
                 if (moreButton.current) {
                     if (data.total <= limit) {
-                        moreButton.current.style.display = 'none'
+                        setIsEnd(true)
                     } else {
-                        moreButton.current.style.display = 'block'
+                        setIsEnd(false)
                     }
                 }
                 window.scrollTo(0,scrollY)
@@ -62,18 +67,18 @@ export default function Main() {
     }
 
     return (
-        <div>
-            <form
+        <Container>
+            <Form
                 onSubmit={search}>
-                <input type="text" placeholder="상품 제목 입력" value={inputText} onChange={onChangeInputText} required />
-                <input type="submit" value="검색" />
-            </form>
+                <CustomInput placeholder={"상품 제목 입력"} value={inputText} onChange={onChangeInputText} />
+                <SubmitButton type="submit" value="검색" />
+            </Form>
             <CardsWrapper>
                 {products.map((item: Item) => (
                     <ItemCard key={item.id} item={item} />
                 ))}
             </CardsWrapper>
-            <button onClick={seeMore} ref={moreButton}>더보기</button>
-        </div>
+            <SeeMoreButton onClick={isEnd?()=>{window.scrollTo(0,0)}:seeMore} ref={moreButton}>{isEnd?'맨 위로 올라가기':'더보기'}</SeeMoreButton>
+        </Container>
     )
 }

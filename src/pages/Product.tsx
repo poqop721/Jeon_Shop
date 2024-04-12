@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Item } from "./Home"
-import { CardInfo } from "../components/CardStyle"
+import { CardInfo } from "../styleComponents/CardStyle"
 
 export default function Product() {
     const { id } = useParams()

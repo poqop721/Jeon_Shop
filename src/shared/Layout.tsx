@@ -25,8 +25,8 @@ const HeaderStyles = {
     display: 'flex',
     // flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
     minHeight: '90vh',
+    backgroundColor : '#ebebeb',
   }
   
   function Header() {

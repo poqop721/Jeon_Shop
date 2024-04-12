@@ -1,5 +1,5 @@
 import { Item } from "../pages/Home"
-import { CardsItem } from "./CardStyle"
+import { CardsItem } from "../styleComponents/CardStyle"
 import { useNavigate } from "react-router-dom"
 
 export default function ItemCard({item} : {item : Item}){

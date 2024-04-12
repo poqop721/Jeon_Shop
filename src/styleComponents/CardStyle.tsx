@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CardsWrapper = styled.div`
     width: 90%;
-    padding: 4rem;
+    padding: 0 4rem;
     display : grid;
     grid-template-columns : repeat(2,1fr);
     gap : 2em 1.5em;
@@ -16,10 +16,13 @@ export const CardsItem = styled.li`
     border : 1px solid gray;
     padding : 10px;
     gap : 15px;
+    cursor : pointer;
+    box-shadow : 0px 8px 23px #b0b0b0;
+    background-color : white;
+    border : 0px;
     &:hover .title {
         color : blue;
     }
-    cursor : pointer;
     `
 
 export const CardInfo = styled.div`
