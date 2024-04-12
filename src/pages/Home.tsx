@@ -5,7 +5,7 @@ import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
 import CustomInput from "../components/CustomInput";
-import { Form } from "../styleComponents/FormStyle";
+import { Form } from "../styleComponents/CustomForms";
 import { SeeMoreButton, SubmitButton } from "../styleComponents/CustomButtons";
 import { Container } from "../styleComponents/Container";
 

@@ -1,8 +1,11 @@
+import styled from "styled-components"
 import { Item } from "../pages/Home"
 import { CardsItem } from "../styleComponents/CardStyle"
 import { useNavigate } from "react-router-dom"
+import React from "react"
 
-export default function ItemCard({item} : {item : Item}){
+
+function ItemCard({item} : {item : Item}){
     const navigate = useNavigate()
 
     return(
@@ -13,3 +16,5 @@ export default function ItemCard({item} : {item : Item}){
         </CardsItem>
     )
 }
+
+export default React.memo(ItemCard)
