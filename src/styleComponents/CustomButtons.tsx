@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
-export const MoreButton = styled.button`
+export const MoreButton = styled.button<{ $grey : boolean , $display : boolean}>`
     width : 50%;
     height : 50px;
     border-radius : 20px;
     border : 0.1px solid #bdbdbd;
-    background-color : #cfcfcf;
-    font-size : 1.1em;
+    display : ${(props) => (props.$display ? 'block' : 'none')};
+    background-color : ${(props) => (props.$grey ? '#cfcfcf' : '#4287f5')};
+    font-size : 1.15em;
+    font-weight:600;
     cursor : pointer;
+    color : ${(props) => (props.$grey ? 'black' : 'white')};
     &:hover{
-        background-color : #b5b5b5;
+        background-color : ${(props) => (props.$grey ? '#b5b5b5' : '#166bf5')};
+        color : ${(props) => (props.$grey ? 'black' : 'white')};
     }
 `
 

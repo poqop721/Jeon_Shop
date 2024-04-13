@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CardsWrapper from "../components/CardsWrapper";
 import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
 import CustomInput from "../components/CustomInput";
-import { Form } from "../styleComponents/CustomForms";
-import { SubmitButton } from "../styleComponents/CustomButtons";
 import SeeMoreButton from "../components/SeeMoreButton";
 import { Container } from "../styleComponents/Container";
 import NoResult from "../components/NoResult";
+import CustomForm from "../components/CustomForm";
+import CustomButton from "../components/CustomButton";
+import { SubmitButton } from "../styleComponents/CustomButtons";
 
 export interface Item {
     id: number,
@@ -43,6 +44,7 @@ export default function Main() {
                     setIsEnd(false)
                 }
             window.scrollTo(0,scrollY)
+            console.log(1312312)
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
@@ -50,30 +52,30 @@ export default function Main() {
             })
     }, [limit, keyword])
 
-    const search = (e: React.FormEvent<HTMLFormElement>) => {
+    const search = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setKeyword(inputText)
         setLimit(10)
-    }
+    },[inputText])
 
-    const onChangeInputText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeInputText = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setInputText(e.target.value);
-    };
+    },[]);
 
 
-    const seeMore = () => {
+    const seeMore = useCallback(() => {
+        console.log(132)
         setLimit(limit + 10)
-    }
+    },[limit])
 
     return (
         <Container>
-            <Form
-                onSubmit={search}>
+            <CustomForm onSubmit={search}>
                 <CustomInput placeholder={"상품 제목 입력"} value={inputText} onChange={onChangeInputText} />
-                <SubmitButton type="submit" value="검색" />
-            </Form>
+                <CustomButton type={"submit"} value={"검색"} styleComponent={SubmitButton} onClick={null}/>
+            </CustomForm>
             {products.length?<CardsWrapper products={products}/>:<NoResult/>}
-            <SeeMoreButton onClick={isEnd?()=>{window.scrollTo(0,0)}:seeMore} limit={limit} isEnd={isEnd} />
+            <SeeMoreButton onClick={seeMore} limit={limit} isEnd={isEnd} />
         </Container>
     )
 }

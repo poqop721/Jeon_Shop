@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MoreButton } from "../styleComponents/CustomButtons"
+import React from "react";
 
 interface SeeMoreButtonProps{
     onClick : React.MouseEventHandler<HTMLButtonElement>,
@@ -9,29 +10,31 @@ interface SeeMoreButtonProps{
 
 function SeeMoreButton({onClick, limit, isEnd} : SeeMoreButtonProps){
     const buttonRef = useRef<HTMLButtonElement>(null)
+    const [isGreyBtn, setIsGreyBtn] = useState<boolean>(false)
+    const [isDisplay, setIsDisplay] = useState<boolean>(true)
 
     useEffect(()=>{
         if(buttonRef.current){
             if(isEnd){
                 if(limit <= 10){
-                    buttonRef.current.style.display = 'none'
+                    setIsDisplay(false)
                 } else{
-                    buttonRef.current.style.display = 'block'
                     buttonRef.current.innerText = '맨 위로 올라가기'
-                    buttonRef.current.onclick = ()=>window.scrollTo(0,0)
+                    setIsGreyBtn(true)
+                    setIsDisplay(true)
                 }
             } else {
-                buttonRef.current.style.display = 'block'
                 buttonRef.current.innerText = '더보기'
-                buttonRef.current.onclick = ()=>onClick
+                setIsGreyBtn(false)
+                setIsDisplay(true)
             }
         }
 
     },[limit,isEnd])
 
     return(
-        <MoreButton onClick={onClick} ref={buttonRef} />
+        <MoreButton onClick={isEnd?()=>window.scrollTo(0,0):onClick} ref={buttonRef} $grey={isGreyBtn} $display={isDisplay}/>
     )
 }
 
-export default SeeMoreButton
+export default React.memo(SeeMoreButton)

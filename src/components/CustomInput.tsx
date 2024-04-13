@@ -1,3 +1,4 @@
+import React from "react";
 import { ChangeEventHandler } from "react"
 import styled from "styled-components";
 
@@ -21,8 +22,10 @@ const Input = styled.input`
     }
 `
 
-export default function CustomInput({placeholder, value, onChange} : CustomInputProps){
+function CustomInput({placeholder, value, onChange} : CustomInputProps){
     return(
         <Input type="text" placeholder={placeholder} value={value} onChange={onChange} required />
     )
 }
+
+export default React.memo(CustomInput)
