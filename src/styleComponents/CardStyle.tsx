@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-export const CardsWrapper = styled.div`
+export const CardsWrapperDiv = styled.div`
     width: 90%;
     height : 100%;
-    padding: 0 4rem;
     display : grid;
     grid-template-columns : repeat(2,1fr);
     gap : 2em 1.5em;
@@ -11,6 +10,8 @@ export const CardsWrapper = styled.div`
     `
 
 export const CardsItem = styled.li`
+    min-width : 0;
+    min-height : 0;
     display: flex;
     flex-direction : column;
     border-radius: 10px;

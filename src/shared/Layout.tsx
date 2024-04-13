@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 
 const HeaderStyles = {
-    width: '100%',
     background: 'black',
     height: '50px',
     display: 'flex',
@@ -11,7 +10,6 @@ const HeaderStyles = {
     fontWeight: '600',
   };
   const FooterStyles = {
-    width: '100%',
     height: '50px',
     display: 'flex',
     background: 'black',
@@ -22,6 +20,7 @@ const HeaderStyles = {
   };
   
   const layoutStyles = {
+    width : '100%',
     display: 'flex',
     // flexDirection: 'column',
     justifyContent: 'center',

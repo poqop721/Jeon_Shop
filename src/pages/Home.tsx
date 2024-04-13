@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import ItemCard from "../components/ItemCard";
-import { CardsWrapper } from "../styleComponents/CardStyle";
+import CardsWrapper from "../components/CardsWrapper";
 import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
@@ -8,6 +7,7 @@ import CustomInput from "../components/CustomInput";
 import { Form } from "../styleComponents/CustomForms";
 import { SeeMoreButton, SubmitButton } from "../styleComponents/CustomButtons";
 import { Container } from "../styleComponents/Container";
+import NoResult from "../components/NoResult";
 
 export interface Item {
     id: number,
@@ -73,11 +73,7 @@ export default function Main() {
                 <CustomInput placeholder={"상품 제목 입력"} value={inputText} onChange={onChangeInputText} />
                 <SubmitButton type="submit" value="검색" />
             </Form>
-            <CardsWrapper>
-                {products.map((item: Item) => (
-                    <ItemCard key={item.id} item={item} />
-                ))}
-            </CardsWrapper>
+            {products.length?<CardsWrapper products={products}/>:<NoResult/>}
             <SeeMoreButton onClick={isEnd?()=>{window.scrollTo(0,0)}:seeMore} ref={moreButton}>{isEnd?'맨 위로 올라가기':'더보기'}</SeeMoreButton>
         </Container>
     )
