@@ -4,14 +4,27 @@ import { CardsItem } from "../styleComponents/CardStyle"
 import { useNavigate } from "react-router-dom"
 import React from "react"
 
-const ImageDiv = styled.div`
-  width: 100%;
-  height: 250px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  border-radius:10px;
-  box-shadow:inset 0px 1px 13px #bdbdbd;
+const ImageDivContainer = styled.div`
+    width : 100%;
+    height : 250px;
+    border-radius:10px;
+    overflow : hidden;
+    position : relative;
+    &::after{
+        content: "";
+        position: absolute;
+        inset: 0;
+        box-shadow:inset 0px 1px 13px #bdbdbd;
+    }
+    `
+    
+    const ImageDiv = styled.div`
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transform: scale(1.015);
+    transition: transform 0.3s;
 `
 
 const Image = styled.img`
@@ -33,9 +46,11 @@ function ItemCard({item} : {item : Item}){
 
     return(
         <CardsItem onClick={()=>{navigate(`/product/${item.id}`)}}>
-            <ImageDiv style={{backgroundImage:`url(${item.thumbnail})`}}>
-                <Image src={item.thumbnail} alt={item.title} />
-            </ImageDiv>
+            <ImageDivContainer>
+                <ImageDiv className="imgDiv" style={{backgroundImage:`url(${item.thumbnail})`}}>
+                    <Image src={item.thumbnail} alt={item.title} />
+                </ImageDiv>
+            </ImageDivContainer>
             <InfoDiv>
                 <p className="title">{item.brand} - {item.title}</p>
                 <p><Price>{item.price}</Price>$</p>

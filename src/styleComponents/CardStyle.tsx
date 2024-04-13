@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const CardsWrapper = styled.div`
     width: 90%;
+    height : 100%;
     padding: 0 4rem;
     display : grid;
     grid-template-columns : repeat(2,1fr);
@@ -22,6 +23,10 @@ export const CardsItem = styled.li`
     border : 0px;
     &:hover .title {
         color : blue;
+    }
+    &:hover .imgDiv {
+        transform: scale(1.1);
+        transition: transform 0.3s;
     }
     `
 
