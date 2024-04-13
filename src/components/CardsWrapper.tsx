@@ -1,8 +1,9 @@
 import { Item } from "../pages/Home";
 import ItemCard from "./ItemCard";
 import { CardsWrapperDiv } from "../styleComponents/CardStyle";
+import React from "react";
 
-export default function CardsWrapper({products}:{products : Item[]}){
+function CardsWrapper({products}:{products : Item[]}){
     return(
         <CardsWrapperDiv>
             {products.map((item: Item) => (
@@ -11,3 +12,5 @@ export default function CardsWrapper({products}:{products : Item[]}){
         </CardsWrapperDiv>
     )
 }
+
+export default React.memo(CardsWrapper)

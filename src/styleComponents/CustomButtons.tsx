@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SeeMoreButton = styled.button`
+export const MoreButton = styled.button`
     width : 50%;
     height : 50px;
     border-radius : 20px;

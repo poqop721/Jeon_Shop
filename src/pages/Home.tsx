@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import CardsWrapper from "../components/CardsWrapper";
 import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
 import CustomInput from "../components/CustomInput";
 import { Form } from "../styleComponents/CustomForms";
-import { SeeMoreButton, SubmitButton } from "../styleComponents/CustomButtons";
+import { SubmitButton } from "../styleComponents/CustomButtons";
+import SeeMoreButton from "../components/SeeMoreButton";
 import { Container } from "../styleComponents/Container";
 import NoResult from "../components/NoResult";
 
@@ -29,7 +30,6 @@ export default function Main() {
     const [limit, setLimit] = useAtom<number>(limitAtom)
     const [products, setProducts] = useState<Item[]>([])
     const [isEnd, setIsEnd] = useState<boolean>(false)
-    const moreButton = useRef<HTMLButtonElement>(null)
     const scrollY = useRecordScroll()
 
     useEffect(() => {
@@ -37,14 +37,12 @@ export default function Main() {
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products)
-                if (moreButton.current) {
-                    if (data.total <= limit) {
-                        setIsEnd(true)
-                    } else {
-                        setIsEnd(false)
-                    }
+                if (data.total <= limit) {
+                    setIsEnd(true)
+                } else {
+                    setIsEnd(false)
                 }
-                window.scrollTo(0,scrollY)
+            window.scrollTo(0,scrollY)
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
@@ -57,6 +55,7 @@ export default function Main() {
         setKeyword(inputText)
         setLimit(10)
     }
+
     const onChangeInputText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputText(e.target.value);
     };
@@ -74,7 +73,7 @@ export default function Main() {
                 <SubmitButton type="submit" value="검색" />
             </Form>
             {products.length?<CardsWrapper products={products}/>:<NoResult/>}
-            <SeeMoreButton onClick={isEnd?()=>{window.scrollTo(0,0)}:seeMore} ref={moreButton}>{isEnd?'맨 위로 올라가기':'더보기'}</SeeMoreButton>
+            <SeeMoreButton onClick={isEnd?()=>{window.scrollTo(0,0)}:seeMore} limit={limit} isEnd={isEnd} />
         </Container>
     )
 }

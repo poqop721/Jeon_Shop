@@ -59,4 +59,4 @@ function ItemCard({item} : {item : Item}){
     )
 }
 
-export default React.memo(ItemCard)
+export default ItemCard
