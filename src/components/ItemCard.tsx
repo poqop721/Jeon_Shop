@@ -2,6 +2,36 @@ import styled from "styled-components"
 import { Item } from "../pages/Home"
 import { useNavigate } from "react-router-dom"
 import { ImageDiv, Image } from "./ImageDivStyle"
+import Rating from "./Rating"
+import Price from "./Price"
+
+interface ItemCardProps {
+    item: Item,
+}
+
+function ItemCard({ item }: ItemCardProps) {
+    const navigate = useNavigate()
+    const isDiscount = item.discountPercentage !== 0
+    const discountPrice = ~~(item.price * ((100 - item.discountPercentage) / 100))
+
+    return (
+        <CardsItemLi onClick={() => { navigate(`/product/${item.id}`) }}>
+            <ImageContainerDiv>
+                <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }} $page={'home'}>
+                    <Image src={item.thumbnail} alt={item.title} />
+                </ImageDiv>
+            </ImageContainerDiv>
+            <InfoDiv>
+                <BrandTitleDiv className="title">{item.brand} - {item.title}</BrandTitleDiv>
+                <Rating rate={item.rating} showRateStr={false} />
+                <div><Price isDiscount={isDiscount} discountPrice={discountPrice} price={item.price} styleComponent={PriceSpan} page="home" /></div>
+            </InfoDiv>
+        </CardsItemLi>
+    )
+}
+
+export default ItemCard
+
 
 const CardsItemLi = styled.li`
     min-width : 0;
@@ -39,36 +69,17 @@ const ImageContainerDiv = styled.div`
     }
 `
 
-const PriceP = styled.span`
+const PriceSpan = styled.span`
     font-size : 1.2em;
     font-weight : 700;
 `
 
 const InfoDiv = styled.div`
     padding : 0 0.7em;
-    line-height : 1.7em;
+    line-height : 1.9em;
 `
 
-interface ItemCardProps {
-    item: Item,
-}
-
-function ItemCard({ item }: ItemCardProps) {
-    const navigate = useNavigate()
-
-    return (
-        <CardsItemLi onClick={() => { navigate(`/product/${item.id}`) }}>
-            <ImageContainerDiv>
-                <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }} $page={'home'}>
-                    <Image src={item.thumbnail} alt={item.title} />
-                </ImageDiv>
-            </ImageContainerDiv>
-            <InfoDiv>
-                <p className="title">{item.brand} - {item.title}</p>
-                <p><PriceP>{item.price}</PriceP>$</p>
-            </InfoDiv>
-        </CardsItemLi>
-    )
-}
-
-export default ItemCard
+const BrandTitleDiv = styled.div`
+    font-size : 1.2em;
+    font-weight : 700;
+`

@@ -10,7 +10,7 @@ const HeaderDiv = styled.div`
 `
 
 const HeaderLogoA = styled.a`
-  color : black;
+  color : #4d4d4d;
   font-size : 1.2em;
   font-weight : 600;
   padding-left: 20px;
@@ -22,7 +22,7 @@ const FooterDiv = styled.div`
   width : 100%;
   display: flex;
   background-color : #5e5e5e;
-  color: white;
+  color: #dbdbdb;
   align-items: center;
   justify-content: center;
   gap : 0 2em;
@@ -32,7 +32,7 @@ const FooterDiv = styled.div`
 `
 
 const FooterA = styled.a`
-  color : white;
+  color : #dbdbdb;
 `
 
 const LayoutDiv = styled.div`

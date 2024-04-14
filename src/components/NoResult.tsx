@@ -1,5 +1,17 @@
 import styled from "styled-components"
 
+function NoResult() {
+
+    return (
+        <NoResultDiv>
+            검색 결과가 없습니다.
+        </NoResultDiv>
+    )
+}
+
+export default NoResult
+
+
 const NoResultDiv = styled.div`
     display:flex;
     align-items:center;
@@ -11,14 +23,3 @@ const NoResultDiv = styled.div`
     font-weight : 600;
     color : gray;
 `
-
-function NoResult() {
-
-    return (
-        <NoResultDiv>
-            검색 결과가 없습니다.
-        </NoResultDiv>
-    )
-}
-
-export default NoResult

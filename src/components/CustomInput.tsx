@@ -1,24 +1,6 @@
 import { ChangeEventHandler } from "react"
 import styled from "styled-components";
 
-const Input = styled.input`
-    flex : 1;
-    width : 80%;
-    height : 25px;
-    padding : 0.5em 1em;
-    border : 0px;
-    border-radius : 20px;
-    font-size : 1.2em;
-    z-index : 0;
-    &:focus{
-        outline : none;
-    }
-`
-
-const SearchResultDiv = styled.span`
-
-`
-
 interface CustomIptProps {
     placeholder: string;
     value: string;
@@ -32,3 +14,18 @@ function CustomIpt({ placeholder, value, onChange }: CustomIptProps) {
 }
 
 export default CustomIpt
+
+
+const Input = styled.input`
+    flex : 1;
+    width : 80%;
+    height : 25px;
+    padding : 0.5em 1em;
+    border : 0px;
+    border-radius : 20px;
+    font-size : 1.2em;
+    z-index : 0;
+    &:focus{
+        outline : none;
+    }
+`

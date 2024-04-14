@@ -12,14 +12,6 @@ import CustomBtn from "../components/CustomButton";
 import { SubmitButton } from "../components/ButtonStyles";
 import styled from "styled-components";
 
-const SearchResultDiv = styled.span`
-    font-size : 1.2em;
-    font-weight : 600;
-    color : grey;
-    margin-right : 0.8em;
-    border-left : 1px solid grey;
-    padding-left : 0.5em; 
-`
 
 export interface Item {
     id: number,
@@ -28,11 +20,11 @@ export interface Item {
     brand: string,
     thumbnail: string,
     description?: string,
-    discountPercentage?: number,
-    rating?: number,
-    stock?: number,
-    category?: string,
-    images?: Array<string>
+    discountPercentage: number,
+    rating: number,
+    stock: number,
+    category: string,
+    images: Array<string>
 }
 
 function Home() {
@@ -45,7 +37,7 @@ function Home() {
     const scrollY = useRecordScroll()
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/search?q=${keyword}&limit=${limit}&select=id,thumbnail,title,brand,price`)
+        fetch(`${process.env.REACT_APP_API_URL}/search?q=${keyword}&limit=${limit}&select=id,thumbnail,title,brand,price,rating,discountPercentage`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products)
@@ -83,13 +75,23 @@ function Home() {
         <ContainerDiv>
             <CustomForm onSubmit={search}>
                 <CustomIpt placeholder={"상품 제목 입력"} value={inputText} onChange={onChangeInputText} />
-                {keyword===''?'':<SearchResultDiv>검색 결과 : {total}</SearchResultDiv>}
+                {keyword === '' ? '' : <SearchResultDiv>검색 결과 : {total}</SearchResultDiv>}
                 <CustomBtn type={"submit"} text={"검색"} styleComponent={SubmitButton} onClick={null} />
             </CustomForm>
             {products.length ? <CardsWrapper products={products} /> : <NoResult />}
-            <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} totalPage={Math.ceil(total/10)} curPage={limit/10}/>
+            <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} totalPage={Math.ceil(total / 10)} curPage={limit / 10} />
         </ContainerDiv>
     )
 }
 
 export default Home
+
+
+const SearchResultDiv = styled.span`
+    font-size : 1.2em;
+    font-weight : 600;
+    color : grey;
+    margin-right : 0.8em;
+    border-left : 1px solid grey;
+    padding-left : 0.5em; 
+`
