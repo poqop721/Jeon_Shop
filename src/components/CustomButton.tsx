@@ -15,4 +15,4 @@ function CustomButton({type, value, styleComponent, onClick} : CustomButtonProps
     )
 }
 
-export default React.memo(CustomButton)
+export default CustomButton

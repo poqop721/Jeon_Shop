@@ -37,4 +37,4 @@ function SeeMoreButton({onClick, limit, isEnd} : SeeMoreButtonProps){
     )
 }
 
-export default React.memo(SeeMoreButton)
+export default SeeMoreButton

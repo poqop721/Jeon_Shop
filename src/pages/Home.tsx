@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CardsWrapper from "../components/CardsWrapper";
 import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
@@ -52,21 +52,21 @@ export default function Main() {
             })
     }, [limit, keyword])
 
-    const search = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    const search = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setKeyword(inputText)
         setLimit(10)
-    },[inputText])
+    }
 
-    const onChangeInputText = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeInputText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputText(e.target.value);
-    },[]);
+    }
 
 
-    const seeMore = useCallback(() => {
+    const seeMore = () => {
         console.log(132)
         setLimit(limit + 10)
-    },[limit])
+    }
 
     return (
         <Container>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 
 const Form = styled.form`
@@ -19,7 +19,7 @@ interface CustomFormsProps{
 }
 
 function CustomForms({onSubmit, children} : CustomFormsProps){
-    
+
     return(
         <Form onSubmit={onSubmit}>{children}</Form>
     )

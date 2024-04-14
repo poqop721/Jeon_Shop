@@ -28,4 +28,4 @@ function CustomInput({placeholder, value, onChange} : CustomInputProps){
     )
 }
 
-export default React.memo(CustomInput)
+export default CustomInput
