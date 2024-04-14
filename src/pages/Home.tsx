@@ -47,8 +47,8 @@ function Home() {
                 } else {
                     setIsEnd(false)
                 }
-                window.scrollTo(0, scrollY)
             })
+            .then(()=>{window.scrollTo(0, scrollY)})
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
                 console.log(error)
