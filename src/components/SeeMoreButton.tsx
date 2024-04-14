@@ -23,9 +23,11 @@ interface SeeMoreBtnProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>,
     limit: number,
     isEnd: boolean,
+    totalPage : number,
+    curPage : number,
 }
 
-function SeeMoreBtn({ onClick, limit, isEnd }: SeeMoreBtnProps) {
+function SeeMoreBtn({ onClick, limit, isEnd ,totalPage, curPage}: SeeMoreBtnProps) {
     const [isGreyBtn, setIsGreyBtn] = useState<boolean>(false)
     const [isDisplay, setIsDisplay] = useState<boolean>(true)
 
@@ -45,7 +47,7 @@ function SeeMoreBtn({ onClick, limit, isEnd }: SeeMoreBtnProps) {
     }, [limit, isEnd])
 
     return (
-        <MoreButton onClick={isEnd ? () => window.scrollTo(0, 0) : onClick} $grey={isGreyBtn} $display={isDisplay} >{isEnd ? '맨 위로 올라가기' : '더보기'}</MoreButton>
+        <MoreButton onClick={isEnd ? () => window.scrollTo(0, 0) : onClick} $grey={isGreyBtn} $display={isDisplay} >{isEnd ? '맨 위로 올라가기' : `더보기 ( ${curPage} / ${totalPage} )`}</MoreButton>
     )
 }
 

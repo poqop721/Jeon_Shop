@@ -15,6 +15,10 @@ const Input = styled.input`
     }
 `
 
+const SearchResultDiv = styled.span`
+
+`
+
 interface CustomIptProps {
     placeholder: string;
     value: string;

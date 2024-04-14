@@ -10,6 +10,16 @@ import NoResult from "../components/NoResult";
 import CustomForm from "../components/CustomForm";
 import CustomBtn from "../components/CustomButton";
 import { SubmitButton } from "../components/ButtonStyles";
+import styled from "styled-components";
+
+const SearchResultDiv = styled.span`
+    font-size : 1.2em;
+    font-weight : 600;
+    color : grey;
+    margin-right : 0.8em;
+    border-left : 1px solid grey;
+    padding-left : 0.5em; 
+`
 
 export interface Item {
     id: number,
@@ -31,6 +41,7 @@ function Home() {
     const [inputText, setInputText] = useState<string>(keyword)
     const [products, setProducts] = useState<Item[]>([])
     const [isEnd, setIsEnd] = useState<boolean>(false)
+    const [total, setTotal] = useState<number>(0)
     const scrollY = useRecordScroll()
 
     useEffect(() => {
@@ -44,6 +55,7 @@ function Home() {
                     setIsEnd(false)
                 }
                 window.scrollTo(0, scrollY)
+                setTotal(data.total)
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
@@ -55,6 +67,7 @@ function Home() {
         e.preventDefault();
         setKeyword(inputText)
         setLimit(10)
+        setTotal(0)
     }
 
     const onChangeInputText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +76,6 @@ function Home() {
 
 
     const seeMore = () => {
-        console.log(132)
         setLimit(limit + 10)
     }
 
@@ -71,10 +83,11 @@ function Home() {
         <ContainerDiv>
             <CustomForm onSubmit={search}>
                 <CustomIpt placeholder={"상품 제목 입력"} value={inputText} onChange={onChangeInputText} />
+                {keyword===''?'':<SearchResultDiv>검색 결과 : {total}</SearchResultDiv>}
                 <CustomBtn type={"submit"} text={"검색"} styleComponent={SubmitButton} onClick={null} />
             </CustomForm>
             {products.length ? <CardsWrapper products={products} /> : <NoResult />}
-            <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} />
+            <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} totalPage={Math.ceil(total/10)} curPage={limit/10}/>
         </ContainerDiv>
     )
 }
