@@ -18,8 +18,9 @@ export const useRecordScroll = () => {
 
     const handleScroll = useMemo(() =>
         throttle(() => {
+            console.log('th')
             setScrollY(window.scrollY)
-        }, 200), [])
+        }, 400), [])
 
 
     useEffect(() => {

@@ -41,19 +41,19 @@ function Home() {
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products)
+                setTotal(data.total)
                 if (data.total <= limit) {
                     setIsEnd(true)
                 } else {
                     setIsEnd(false)
                 }
-                setTotal(data.total)
                 window.scrollTo(0, scrollY)
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
                 console.log(error)
             })
-    }, [limit, keyword, scrollY])
+    }, [limit, keyword])
 
     const search = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
