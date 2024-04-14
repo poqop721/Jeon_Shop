@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Item } from "./Home"
-import { CardInfo } from "../styleComponents/CardStyle"
+import styled from "styled-components"
+
+const CardInfo = styled.div`
+    padding : 2em;
+    display:flex;
+    flex-direction : column;
+    justify-contents:center;
+    align-items:center;
+    gap : 1em;
+    `
 
 export default function Product() {
     const { id } = useParams()
