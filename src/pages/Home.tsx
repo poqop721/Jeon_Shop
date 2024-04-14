@@ -49,7 +49,7 @@ function Home() {
                 }
                 setTimeout(() => {
                     window.scrollTo(0, scrollY);
-                }, 500);
+                }, 200);
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
