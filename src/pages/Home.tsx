@@ -53,7 +53,7 @@ function Home() {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
                 console.log(error)
             })
-    }, [limit, keyword])
+    }, [limit, keyword, scrollY])
 
     const search = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
