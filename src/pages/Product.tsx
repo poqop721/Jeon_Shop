@@ -11,18 +11,15 @@ const ProductContainerDiv = styled(ContainerDiv)`
     width : 100%;
     background-color : white;
     padding : 4em;
-    gap : 2em;
 `
 const InfoBoxDiv = styled.div`
     width : 90%;
     display : flex;
     justify-content : flex-start;
     gap : 2em;
+    padding-bottom : 5em;
+    border-bottom : 1px solid #e6e6e6;
 `
-
-// const Image = styled.img`
-//     // width : 70%;
-// `
 
 const InfoDiv = styled.div`
     height : 100%;
@@ -54,6 +51,14 @@ const PriceDiv = styled.div`
     margin : 0.7em 0;
     padding : 0.5em 0;
     color : #cb1400;
+`
+
+const DetailPageDiv = styled.div`
+    margin-top : 6em;
+    padding : 4em;
+    display : flex;
+    flex-direction : column;
+    gap : 3em;
 `
 
 function Product() {
@@ -91,13 +96,15 @@ function Product() {
                         <span>{item?.description}</span>
                     </InfoDiv>
                 </InfoBoxDiv>
-                {item?.images?.map((url, idx) => {
-                    return (
-                    <ImageDiv key={idx} style={{ backgroundImage: `url(${url})` }} $page={'product'}>
-                        <Image src={url} alt={`image_${idx}`} />
-                    </ImageDiv>
-                )
-                })}
+                <DetailPageDiv>
+                    {item?.images?.map((url, idx) => {
+                        return (
+                        <ImageDiv key={idx} style={{ backgroundImage: `url(${url})` }} $page={'product'}>
+                            <Image src={url} alt={`image_${idx}`} />
+                        </ImageDiv>
+                    )
+                    })}
+                </DetailPageDiv>
             </ProductContainerDiv>
         </ContainerDiv>
     )
