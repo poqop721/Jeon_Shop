@@ -10,14 +10,15 @@ const NoResultDiv = styled.div`
     font-size : 2em;
     font-weight : 600;
     color : gray;
-    
 `
 
-export default function NoResult(){
+function NoResult() {
 
-    return(
+    return (
         <NoResultDiv>
             검색 결과가 없습니다.
         </NoResultDiv>
     )
 }
+
+export default NoResult

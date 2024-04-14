@@ -10,10 +10,14 @@ const CardsWrapperDiv = styled.div`
     grid-template-columns : repeat(2,1fr);
     gap : 2em 1.5em;
     margin: 50px 0;
-    `
+`
 
-function CardsWrapper({products}:{products : Item[]}){
-    return(
+interface CardsWrapperProps {
+    products: Item[],
+}
+
+function CardsWrapper({ products }: CardsWrapperProps) {
+    return (
         <CardsWrapperDiv>
             {products.map((item: Item) => (
                 <ItemCard key={item.id} item={item} />

@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Item } from "../pages/Home"
 import { useNavigate } from "react-router-dom"
 
-const CardsItem = styled.li`
+const CardsItemLi = styled.li`
     min-width : 0;
     min-height : 0;
     display: flex;
@@ -22,9 +22,9 @@ const CardsItem = styled.li`
         transform: scale(1.1);
         transition: transform 0.3s;
     }
-    `
+`
 
-const ImageDivContainer = styled.div`
+const ImageContainerDiv = styled.div`
     width : 100%;
     height : 250px;
     border-radius:10px;
@@ -36,7 +36,7 @@ const ImageDivContainer = styled.div`
         inset: 0;
         box-shadow:inset 0px 1px 13px #bdbdbd;
     }
-    `
+`
 
 const ImageDiv = styled.div`
     width: 100%;
@@ -51,7 +51,7 @@ const Image = styled.img`
     opacity: 0;
 `
 
-const Price = styled.span`
+const PriceP = styled.span`
     font-size : 1.2em;
     font-weight : 700;
 `
@@ -61,21 +61,25 @@ const InfoDiv = styled.div`
     line-height : 1.7em;
 `
 
-function ItemCard({ item }: { item: Item }) {
+interface ItemCardProps {
+    item: Item,
+}
+
+function ItemCard({ item }: ItemCardProps) {
     const navigate = useNavigate()
 
     return (
-        <CardsItem onClick={() => { navigate(`/product/${item.id}`) }}>
-            <ImageDivContainer>
+        <CardsItemLi onClick={() => { navigate(`/product/${item.id}`) }}>
+            <ImageContainerDiv>
                 <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }}>
                     <Image src={item.thumbnail} alt={item.title} />
                 </ImageDiv>
-            </ImageDivContainer>
+            </ImageContainerDiv>
             <InfoDiv>
                 <p className="title">{item.brand} - {item.title}</p>
-                <p><Price>{item.price}</Price>$</p>
+                <p><PriceP>{item.price}</PriceP>$</p>
             </InfoDiv>
-        </CardsItem>
+        </CardsItemLi>
     )
 }
 

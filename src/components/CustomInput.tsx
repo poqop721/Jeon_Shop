@@ -1,12 +1,6 @@
 import { ChangeEventHandler } from "react"
 import styled from "styled-components";
 
-interface CustomInputProps{
-    placeholder : string;
-    value : string;
-    onChange : ChangeEventHandler<HTMLInputElement>
-}
-
 const Input = styled.input`
     flex : 1;
     width : 80%;
@@ -21,10 +15,16 @@ const Input = styled.input`
     }
 `
 
-function CustomInput({placeholder, value, onChange} : CustomInputProps){
-    return(
+interface CustomIptProps {
+    placeholder: string;
+    value: string;
+    onChange: ChangeEventHandler<HTMLInputElement>
+}
+
+function CustomIpt({ placeholder, value, onChange }: CustomIptProps) {
+    return (
         <Input type="text" placeholder={placeholder} value={value} onChange={onChange} required />
     )
 }
 
-export default CustomInput
+export default CustomIpt

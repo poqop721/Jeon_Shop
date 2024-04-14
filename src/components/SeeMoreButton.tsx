@@ -19,13 +19,13 @@ const MoreButton = styled.button<{ $grey: boolean, $display: boolean }>`
     }
 `
 
-interface SeeMoreButtonProps {
+interface SeeMoreBtnProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>,
     limit: number,
     isEnd: boolean,
 }
 
-function SeeMoreButton({ onClick, limit, isEnd }: SeeMoreButtonProps) {
+function SeeMoreBtn({ onClick, limit, isEnd }: SeeMoreBtnProps) {
     const [isGreyBtn, setIsGreyBtn] = useState<boolean>(false)
     const [isDisplay, setIsDisplay] = useState<boolean>(true)
 
@@ -49,4 +49,4 @@ function SeeMoreButton({ onClick, limit, isEnd }: SeeMoreButtonProps) {
     )
 }
 
-export default SeeMoreButton
+export default SeeMoreBtn

@@ -3,32 +3,32 @@ import { useAtom } from 'jotai'
 import { scrollYAtom } from "../atoms/prevPageAtom";
 
 export const useRecordScroll = () => {
-    const [scrollY,setScrollY] = useAtom<number>(scrollYAtom)
+    const [scrollY, setScrollY] = useAtom<number>(scrollYAtom)
 
-    const throttle = (callback : ()=>void, delay : number) => {
-        let timerId : NodeJS.Timeout | null = null
+    const throttle = (callback: () => void, delay: number) => {
+        let timerId: NodeJS.Timeout | null = null
         return () => {
-            if(timerId) return;
-            timerId = setTimeout(()=>{
+            if (timerId) return;
+            timerId = setTimeout(() => {
                 callback()
                 timerId = null
             }, delay)
         }
     }
 
-    const handleScroll = useMemo(() => 
-        throttle(()=>{
+    const handleScroll = useMemo(() =>
+        throttle(() => {
             console.log('throttle')
             setScrollY(window.scrollY)
-        },400),[])
+        }, 400), [])
 
 
-    useEffect(()=>{
-        window.addEventListener('scroll',handleScroll)
-        return()=>{
-            window.removeEventListener('scroll',handleScroll)
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
         }
-    },[])
+    }, [])
 
     return scrollY;
 }

@@ -3,12 +3,12 @@ import CardsWrapper from "../components/CardsWrapper";
 import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
-import CustomInput from "../components/CustomInput";
-import SeeMoreButton from "../components/SeeMoreButton";
-import { Container } from "../components/Container";
+import CustomIpt from "../components/CustomInput";
+import SeeMoreBtn from "../components/SeeMoreButton";
+import { ContainerDiv } from "../components/Container";
 import NoResult from "../components/NoResult";
 import CustomForm from "../components/CustomForm";
-import CustomButton from "../components/CustomButton";
+import CustomBtn from "../components/CustomButton";
 import { SubmitButton } from "../components/ButtonStyles";
 
 export interface Item {
@@ -25,7 +25,7 @@ export interface Item {
     images?: Array<string>
 }
 
-export default function Main() {
+function Home() {
     const [keyword, setKeyword] = useAtom<string>(keywordAtom)
     const [inputText, setInputText] = useState<string>(keyword)
     const [limit, setLimit] = useAtom<number>(limitAtom)
@@ -43,8 +43,8 @@ export default function Main() {
                 } else {
                     setIsEnd(false)
                 }
-            window.scrollTo(0,scrollY)
-            console.log(1312312)
+                window.scrollTo(0, scrollY)
+                console.log(1312312)
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
@@ -69,13 +69,15 @@ export default function Main() {
     }
 
     return (
-        <Container>
+        <ContainerDiv>
             <CustomForm onSubmit={search}>
-                <CustomInput placeholder={"상품 제목 입력"} value={inputText} onChange={onChangeInputText} />
-                <CustomButton type={"submit"} value={"검색"} styleComponent={SubmitButton} onClick={null}/>
+                <CustomIpt placeholder={"상품 제목 입력"} value={inputText} onChange={onChangeInputText} />
+                <CustomBtn type={"submit"} value={"검색"} styleComponent={SubmitButton} onClick={null} />
             </CustomForm>
-            {products.length?<CardsWrapper products={products}/>:<NoResult/>}
-            <SeeMoreButton onClick={seeMore} limit={limit} isEnd={isEnd} />
-        </Container>
+            {products.length ? <CardsWrapper products={products} /> : <NoResult />}
+            <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} />
+        </ContainerDiv>
     )
 }
+
+export default Home

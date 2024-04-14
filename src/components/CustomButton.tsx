@@ -1,18 +1,18 @@
 import React from "react"
 
-interface CustomButtonProps{
-    type : string,
-    value : string,
-    onClick : React.MouseEventHandler<HTMLButtonElement> | null,
-    styleComponent : React.ComponentType<any>
+interface CustomBtnProps {
+    type: string,
+    value: string,
+    onClick: React.MouseEventHandler<HTMLButtonElement> | null,
+    styleComponent: React.ComponentType<any>
 }
 
-function CustomButton({type, value, styleComponent, onClick} : CustomButtonProps){
+function CustomBtn({ type, value, styleComponent, onClick }: CustomBtnProps) {
     const StyleButton = styleComponent
 
-    return(
-        <StyleButton type={type} value={value} onClick={onClick}/>
+    return (
+        <StyleButton type={type} value={value} onClick={onClick} />
     )
 }
 
-export default CustomButton
+export default CustomBtn

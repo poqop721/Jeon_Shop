@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SubmitButton = styled.input`
-flex : 0;
+    flex : 0;
     width : 70px;
     height : 32px;
     border-radius : 20px;

@@ -13,16 +13,16 @@ const Form = styled.form`
     z-index : 0;
     background-color : white;
 `
-interface CustomFormsProps{
-    onSubmit(e : React.FormEvent<HTMLFormElement>) : void,
-    children : React.ReactNode,
+interface CustomFormProps {
+    onSubmit(e: React.FormEvent<HTMLFormElement>): void,
+    children: React.ReactNode,
 }
 
-function CustomForms({onSubmit, children} : CustomFormsProps){
+function CustomForm({ onSubmit, children }: CustomFormProps) {
 
-    return(
+    return (
         <Form onSubmit={onSubmit}>{children}</Form>
     )
 }
 
-export default React.memo(CustomForms)
+export default CustomForm
