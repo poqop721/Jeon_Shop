@@ -1,39 +1,51 @@
-import { useEffect, useRef, useState } from "react";
-import { MoreButton } from "../styleComponents/CustomButtons"
+import { useEffect, useState } from "react";
 import React from "react";
+import styled from "styled-components";
 
-interface SeeMoreButtonProps{
-    onClick : React.MouseEventHandler<HTMLButtonElement>,
-    limit : number,
-    isEnd : boolean,
+const MoreButton = styled.button<{ $grey: boolean, $display: boolean }>`
+    width : 50%;
+    height : 50px;
+    border-radius : 20px;
+    border : 0.1px solid #bdbdbd;
+    display : ${(props) => (props.$display ? 'block' : 'none')};
+    background-color : ${(props) => (props.$grey ? '#cfcfcf' : '#4287f5')};
+    font-size : 1.15em;
+    font-weight:600;
+    cursor : pointer;
+    color : ${(props) => (props.$grey ? 'black' : 'white')};
+    &:hover{
+        background-color : ${(props) => (props.$grey ? '#b5b5b5' : '#166bf5')};
+        color : ${(props) => (props.$grey ? 'black' : 'white')};
+    }
+`
+
+interface SeeMoreButtonProps {
+    onClick: React.MouseEventHandler<HTMLButtonElement>,
+    limit: number,
+    isEnd: boolean,
 }
 
-function SeeMoreButton({onClick, limit, isEnd} : SeeMoreButtonProps){
-    const buttonRef = useRef<HTMLButtonElement>(null)
+function SeeMoreButton({ onClick, limit, isEnd }: SeeMoreButtonProps) {
     const [isGreyBtn, setIsGreyBtn] = useState<boolean>(false)
     const [isDisplay, setIsDisplay] = useState<boolean>(true)
 
-    useEffect(()=>{
-        if(buttonRef.current){
-            if(isEnd){
-                if(limit <= 10){
-                    setIsDisplay(false)
-                } else{
-                    buttonRef.current.innerText = '맨 위로 올라가기'
-                    setIsGreyBtn(true)
-                    setIsDisplay(true)
-                }
+    useEffect(() => {
+        if (isEnd) {
+            if (limit <= 10) {
+                setIsDisplay(false)
             } else {
-                buttonRef.current.innerText = '더보기'
-                setIsGreyBtn(false)
+                setIsGreyBtn(true)
                 setIsDisplay(true)
             }
+        } else {
+            setIsGreyBtn(false)
+            setIsDisplay(true)
         }
 
-    },[limit,isEnd])
+    }, [limit, isEnd])
 
-    return(
-        <MoreButton onClick={isEnd?()=>window.scrollTo(0,0):onClick} ref={buttonRef} $grey={isGreyBtn} $display={isDisplay}/>
+    return (
+        <MoreButton onClick={isEnd ? () => window.scrollTo(0, 0) : onClick} $grey={isGreyBtn} $display={isDisplay} >{isEnd ? '맨 위로 올라가기' : '더보기'}</MoreButton>
     )
 }
 

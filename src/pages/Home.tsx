@@ -5,11 +5,11 @@ import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
 import CustomInput from "../components/CustomInput";
 import SeeMoreButton from "../components/SeeMoreButton";
-import { Container } from "../styleComponents/Container";
+import { Container } from "../components/Container";
 import NoResult from "../components/NoResult";
 import CustomForm from "../components/CustomForm";
 import CustomButton from "../components/CustomButton";
-import { SubmitButton } from "../styleComponents/CustomButtons";
+import { SubmitButton } from "../components/ButtonStyles";
 
 export interface Item {
     id: number,

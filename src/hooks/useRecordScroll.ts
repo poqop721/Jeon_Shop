@@ -20,7 +20,7 @@ export const useRecordScroll = () => {
         throttle(()=>{
             console.log('throttle')
             setScrollY(window.scrollY)
-        },300),[])
+        },400),[])
 
 
     useEffect(()=>{

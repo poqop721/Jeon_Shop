@@ -1,7 +1,16 @@
+import styled from "styled-components";
 import { Item } from "../pages/Home";
 import ItemCard from "./ItemCard";
-import { CardsWrapperDiv } from "../styleComponents/CardStyle";
 import React from "react";
+
+const CardsWrapperDiv = styled.div`
+    width: 90%;
+    height : 100%;
+    display : grid;
+    grid-template-columns : repeat(2,1fr);
+    gap : 2em 1.5em;
+    margin: 50px 0;
+    `
 
 function CardsWrapper({products}:{products : Item[]}){
     return(
