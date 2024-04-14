@@ -1,46 +1,47 @@
 import { ReactNode } from "react";
+import styled from "styled-components";
 
-const HeaderStyles = {
-    background: 'black',
-    height: '50px',
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: '20px',
-    color: 'white',
-    fontWeight: '600',
-  };
-  const FooterStyles = {
-    height: '50px',
-    display: 'flex',
-    background: 'black',
-    color: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '12px',
-  };
+const HeaderDiv = styled.div`
+    background-color : black;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: white;
+    font-weight: 600;
+`
+
+  const FooterDiv = styled.div`
+    height: 50px;
+    display: flex;
+    background-color : black;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+`
   
-  const layoutStyles = {
-    width : '100%',
-    display: 'flex',
-    // flexDirection: 'column',
-    justifyContent: 'center',
-    minHeight: '90vh',
-    backgroundColor : '#ededed',
-  }
+  const LayoutDiv = styled.div`
+    width : 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 90vh;
+    background-color : #ededed;
+`
   
   function Header() {
     return (
-      <div style={{ ...HeaderStyles }}>
+      <HeaderDiv>
         <span>Jeon Shop</span>
-      </div>
+      </HeaderDiv>
     );
   }
   
   function Footer() {
     return (
-      <div style={{ ...FooterStyles }}>
+      <FooterDiv>
         <span>Jeon Shop</span>
-      </div>
+      </FooterDiv>
     );
   }
   
@@ -49,9 +50,9 @@ const HeaderStyles = {
     return (
       <div>
         <Header />
-        <div style={{...layoutStyles}}>
+        <LayoutDiv>
           {children}
-        </div>
+        </LayoutDiv>
         <Footer />
       </div>
     );
