@@ -47,15 +47,14 @@ function Home() {
                 } else {
                     setIsEnd(false)
                 }
-            })
-            .then(()=>{window.scrollTo(0, scrollY)
-                console.log('test')
+                setTimeout(() => {
+                    window.scrollTo(0, scrollY);
+                }, 500);
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
                 console.log(error)
             })
-            window.scrollTo(0, scrollY)
     }, [limit, keyword])
 
     const search = (e: React.FormEvent<HTMLFormElement>) => {
