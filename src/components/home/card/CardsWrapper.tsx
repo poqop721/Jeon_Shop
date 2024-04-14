@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Item } from "../pages/Home";
+import { Item } from "../../../pages/Home";
 import ItemCard from "./ItemCard";
 import React from "react";
 

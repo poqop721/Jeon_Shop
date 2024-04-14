@@ -1,9 +1,9 @@
 import styled from "styled-components"
-import { Item } from "../pages/Home"
+import { Item } from "../../../pages/Home"
 import { useNavigate } from "react-router-dom"
-import { ImageDiv, Image } from "./ImageDivStyle"
-import Rating from "./Rating"
-import Price from "./Price"
+import { ImageDiv, Image } from "../../shared/ImageDivStyle"
+import Rating from "../../shared/Rating"
+import Price from "../../shared/Price"
 
 interface ItemCardProps {
     item: Item,

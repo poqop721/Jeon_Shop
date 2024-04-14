@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import CardsWrapper from "../components/CardsWrapper";
+import CardsWrapper from "../components/home/card/CardsWrapper";
 import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
-import CustomIpt from "../components/CustomInput";
-import SeeMoreBtn from "../components/SeeMoreButton";
-import { ContainerDiv } from "../components/ContainerStyle";
-import NoResult from "../components/NoResult";
-import CustomForm from "../components/CustomForm";
-import CustomBtn from "../components/CustomButton";
-import { SubmitButton } from "../components/ButtonStyles";
+import CustomIpt from "../components/home/CustomInput";
+import SeeMoreBtn from "../components/home/SeeMoreButton";
+import { ContainerDiv } from "../components/shared/ContainerStyle";
+import NoResult from "../components/home/NoResult";
+import CustomForm from "../components/home/CustomForm";
+import CustomBtn from "../components/shared/CustomButton";
+import { SubmitButton } from "../components/shared/ButtonStyles";
 import styled from "styled-components";
 
 

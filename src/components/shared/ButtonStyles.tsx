@@ -34,8 +34,9 @@ const HomeButtonStyle = css`
     cursor : pointer;
 `
 
-export const HomeSeeMoreButton = styled(BlueButtonStyle)`
+export const HomeSeeMoreButton = styled(BlueButtonStyle)<{ $display: boolean }>`
     ${HomeButtonStyle}
+    display : ${(props) => (props.$display ? 'block' : 'none')};
 `
 
 export const HomeGoUpButton = styled(GrayButtonStyle) <{ $display: boolean }>`
