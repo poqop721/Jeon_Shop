@@ -27,8 +27,8 @@ export interface Item {
 
 function Home() {
     const [keyword, setKeyword] = useAtom<string>(keywordAtom)
-    const [inputText, setInputText] = useState<string>(keyword)
     const [limit, setLimit] = useAtom<number>(limitAtom)
+    const [inputText, setInputText] = useState<string>(keyword)
     const [products, setProducts] = useState<Item[]>([])
     const [isEnd, setIsEnd] = useState<boolean>(false)
     const scrollY = useRecordScroll()
@@ -44,7 +44,6 @@ function Home() {
                     setIsEnd(false)
                 }
                 window.scrollTo(0, scrollY)
-                console.log(1312312)
             })
             .catch(error => {
                 alert('상품을 불러오는데 문제가 발생했습니다.')
