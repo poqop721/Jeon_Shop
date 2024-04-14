@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { Item } from "../pages/Home"
 import { useNavigate } from "react-router-dom"
+import { ImageDiv, Image } from "./ImageDivStyle"
 
 const CardsItemLi = styled.li`
     min-width : 0;
@@ -38,19 +39,6 @@ const ImageContainerDiv = styled.div`
     }
 `
 
-const ImageDiv = styled.div`
-    width: 100%;
-    height: 100%;
-    background-position: center center;
-    background-repeat: no-repeat;
-    transform: scale(1.015);
-    transition: transform 0.3s;
-`
-
-const Image = styled.img`
-    opacity: 0;
-`
-
 const PriceP = styled.span`
     font-size : 1.2em;
     font-weight : 700;
@@ -71,7 +59,7 @@ function ItemCard({ item }: ItemCardProps) {
     return (
         <CardsItemLi onClick={() => { navigate(`/product/${item.id}`) }}>
             <ImageContainerDiv>
-                <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }}>
+                <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }} $page={'home'}>
                     <Image src={item.thumbnail} alt={item.title} />
                 </ImageDiv>
             </ImageContainerDiv>

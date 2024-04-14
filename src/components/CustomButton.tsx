@@ -2,16 +2,16 @@ import React from "react"
 
 interface CustomBtnProps {
     type: string,
-    value: string,
+    text: string,
     onClick: React.MouseEventHandler<HTMLButtonElement> | null,
     styleComponent: React.ComponentType<any>
 }
 
-function CustomBtn({ type, value, styleComponent, onClick }: CustomBtnProps) {
+function CustomBtn({ type, text, styleComponent, onClick }: CustomBtnProps) {
     const StyleButton = styleComponent
 
     return (
-        <StyleButton type={type} value={value} onClick={onClick} />
+        <StyleButton type={type} onClick={onClick} >{text}</StyleButton>
     )
 }
 

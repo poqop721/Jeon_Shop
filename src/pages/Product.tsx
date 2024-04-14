@@ -2,14 +2,58 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Item } from "./Home"
 import styled from "styled-components"
+import { ContainerDiv } from "../components/ContainerStyle"
+import CustomBtn from "../components/CustomButton"
+import { GoToListButton } from "../components/ButtonStyles"
+import { ImageDiv, Image } from "../components/ImageDivStyle"
 
-const CardInfoDiv = styled.div`
-    padding : 2em;
-    display:flex;
+const ProductContainerDiv = styled(ContainerDiv)`
+    width : 100%;
+    background-color : white;
+    padding : 4em;
+    gap : 2em;
+`
+const InfoBoxDiv = styled.div`
+    width : 90%;
+    display : flex;
+    justify-content : flex-start;
+    gap : 2em;
+`
+
+// const Image = styled.img`
+//     // width : 70%;
+// `
+
+const InfoDiv = styled.div`
+    height : 100%;
+    display : flex;
     flex-direction : column;
-    justify-contents:center;
-    align-items:center;
-    gap : 1em;
+    flex-grow:1;
+`
+
+const BrandTitleDiv = styled.div`
+    font-size : 1.7em;
+    font-weight : 700;
+    line-height : 1.3em;
+`
+
+const BrandSpan = styled.span`
+    background-color : #bdbdbd;
+    border-radius : 10px;
+    padding : 0.1em 0.35em;
+    color : #3068b8;
+    margin-right : 0.5em;
+    font-size: 0.9em;
+`
+
+const PriceDiv = styled.div`
+    font-size : 2em;
+    font-weight : 700;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #e6e6e6;
+    margin : 0.7em 0;
+    padding : 0.5em 0;
+    color : #cb1400;
 `
 
 function Product() {
@@ -31,17 +75,31 @@ function Product() {
     }, [id])
 
     return (
-        <CardInfoDiv>
-            <button onClick={() => { navigate("/") }}>목록으로 돌아가기</button>
-            <img src={item?.thumbnail} alt="thumbnail" />
-            <p>brand : {item?.brand}</p>
-            <p>title : {item?.title}</p>
-            <p>price : {item?.price}</p>
-            <p>description : {item?.description}</p>
-            {item?.images?.map((url, idx) => {
-                return (<img key={idx} src={url} alt="images" />)
-            })}
-        </CardInfoDiv>
+        <ContainerDiv>
+            <CustomBtn type={"button"} text={'목록으로 돌아가기'} styleComponent={GoToListButton} onClick={()=>navigate("/")} />
+            <ProductContainerDiv>
+                <InfoBoxDiv>
+                    <ImageDiv style={{ backgroundImage: `url(${item?.thumbnail})` }} $page={'product'}>
+                        <Image src={item?.thumbnail} alt={`thumbnail_${item?.id}`} />
+                    </ImageDiv>
+                    <InfoDiv>
+                        <BrandTitleDiv>
+                            <BrandSpan>{item?.brand}</BrandSpan>
+                            <span>{item?.title}</span>
+                        </BrandTitleDiv>
+                        <PriceDiv>{item?.price} $</PriceDiv>
+                        <span>{item?.description}</span>
+                    </InfoDiv>
+                </InfoBoxDiv>
+                {item?.images?.map((url, idx) => {
+                    return (
+                    <ImageDiv key={idx} style={{ backgroundImage: `url(${url})` }} $page={'product'}>
+                        <Image src={url} alt={`image_${idx}`} />
+                    </ImageDiv>
+                )
+                })}
+            </ProductContainerDiv>
+        </ContainerDiv>
     )
 }
 

@@ -5,7 +5,7 @@ import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
 import CustomIpt from "../components/CustomInput";
 import SeeMoreBtn from "../components/SeeMoreButton";
-import { ContainerDiv } from "../components/Container";
+import { ContainerDiv } from "../components/ContainerStyle";
 import NoResult from "../components/NoResult";
 import CustomForm from "../components/CustomForm";
 import CustomBtn from "../components/CustomButton";
@@ -71,7 +71,7 @@ function Home() {
         <ContainerDiv>
             <CustomForm onSubmit={search}>
                 <CustomIpt placeholder={"상품 제목 입력"} value={inputText} onChange={onChangeInputText} />
-                <CustomBtn type={"submit"} value={"검색"} styleComponent={SubmitButton} onClick={null} />
+                <CustomBtn type={"submit"} text={"검색"} styleComponent={SubmitButton} onClick={null} />
             </CustomForm>
             {products.length ? <CardsWrapper products={products} /> : <NoResult />}
             <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} />
