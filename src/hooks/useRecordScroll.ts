@@ -5,14 +5,8 @@ import { scrollYAtom } from "../atoms/prevPageAtom";
 export const useRecordScroll = () => {
     const [scrollY,setScrollY] = useAtom<number>(scrollYAtom)
 
-    const handleScroll = () => {
-        throttle(()=>{
-            setScrollY(window.scrollY)
-        },300)()
-    }
-
-    const throttle = (callback : Function, delay : number) => {
-        let timerId : NodeJS.Timeout | null
+    const throttle = (callback : ()=>void, delay : number) => {
+        let timerId : NodeJS.Timeout | null = null
         return () => {
             if(timerId) return;
             timerId = setTimeout(()=>{
@@ -21,6 +15,13 @@ export const useRecordScroll = () => {
             }, delay)
         }
     }
+
+    const handleScroll = useMemo(() => 
+        throttle(()=>{
+            console.log('throttle')
+            setScrollY(window.scrollY)
+        },300),[])
+
 
     useEffect(()=>{
         window.addEventListener('scroll',handleScroll)
