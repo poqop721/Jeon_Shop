@@ -33,6 +33,7 @@ function Home() {
     const [inputText, setInputText] = useState<string>(keyword)
     const [products, setProducts] = useState<Item[]>([])
     const [isEnd, setIsEnd] = useState<boolean>(false)
+    const [seeMoreBtnDisabled,setSeeMoreBtnDisabled] = useState<boolean>(false)
     const [total, setTotal] = useState<number>(0)
     const scrollY = useRecordScroll()
 
@@ -47,6 +48,7 @@ function Home() {
                 } else {
                     setIsEnd(false)
                 }
+                setSeeMoreBtnDisabled(false)
                 setTimeout(() => {
                     window.scrollTo(0, scrollY);
                 }, 300);
@@ -71,6 +73,7 @@ function Home() {
 
     const seeMore = () => {
         setLimit(limit + 10)
+        setSeeMoreBtnDisabled(true)
     }
 
     return (
@@ -81,7 +84,7 @@ function Home() {
                 <CustomBtn type={"submit"} text={"검색"} styleComponent={SubmitButton} onClick={null} />
             </CustomForm>
             {products.length ? <CardsWrapper products={products} /> : <NoResult />}
-            <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} totalPage={Math.ceil(total / 10)} curPage={limit / 10} />
+            <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} totalPage={Math.ceil(total / 10)} curPage={limit / 10} disabled={seeMoreBtnDisabled}/>
         </ContainerDiv>
     )
 }

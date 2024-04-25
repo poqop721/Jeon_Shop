@@ -7,9 +7,10 @@ interface SeeMoreBtnProps {
     isEnd: boolean,
     totalPage : number,
     curPage : number,
+    disabled : boolean,
 }
 
-function SeeMoreBtn({ onClick, limit, isEnd ,totalPage, curPage}: SeeMoreBtnProps) {
+function SeeMoreBtn({ onClick, limit, isEnd ,totalPage, curPage, disabled}: SeeMoreBtnProps) {
     const [isDisplay, setIsDisplay] = useState<boolean>(true)
     const [StyleButton,setStyleButton] = useState<React.ComponentType<any>>(HomeSeeMoreButton)
 
@@ -29,7 +30,7 @@ function SeeMoreBtn({ onClick, limit, isEnd ,totalPage, curPage}: SeeMoreBtnProp
     }, [limit, isEnd])
 
     return (
-        <StyleButton onClick={isEnd ? () => window.scrollTo(0, 0) : onClick} $display={isDisplay} >{isEnd ? '맨 위로 올라가기' : `더보기 (${curPage} / ${totalPage})`}</StyleButton>
+        <StyleButton onClick={isEnd ? () => window.scrollTo(0, 0) : onClick} $display={isDisplay} disabled={disabled} >{isEnd ? '맨 위로 올라가기' : `더보기 (${curPage} / ${totalPage})`}</StyleButton>
     )
 }
 
