@@ -42,6 +42,7 @@ const DescTable = styled.table`
     max-width : 100%;
     font-size : 1.4em;
     color : #03001d;
+    border-collapse: collapse;
     @media only screen and (max-width: 480px) {
         margin-top : 1em;
         font-size : 1em;
@@ -53,8 +54,9 @@ border-top : 2px solid #353247;
 &:first-child{
     border-top : 0px;
 }
+
 @media only screen and (max-width: 480px) {
-    border-top : 1px solid #353247;
+    border-width : 1px;
 }
 `
 const Td = styled.td`
