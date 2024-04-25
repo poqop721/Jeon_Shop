@@ -96,4 +96,9 @@ const SearchResultDiv = styled.span`
     margin-right : 0.8em;
     border-left : 1px solid grey;
     padding-left : 0.5em; 
+    @media only screen and (max-width: 480px) {
+        font-size : 0.75em;
+        padding : 0.4em 0.3em;
+        margin-right : 0.3em;
+    }
 `
