@@ -9,7 +9,7 @@ interface InfoBoxProps {
 function InfoBox({ item }: InfoBoxProps) {
     return (
         <InfoBoxDiv>
-            <img src={item?.thumbnail} alt={`thumbnail_${item?.id}`} />
+            <InfoImg src={item?.thumbnail} alt={`thumbnail_${item?.id}`} />
             <Info item={item}/>
         </InfoBoxDiv>
     )
@@ -31,4 +31,8 @@ const InfoBoxDiv = styled.div`
         border-bottom : 1px solid #b1b1b1;
     }
     
+`
+
+const InfoImg = styled.img`
+    max-height:50em;
 `
