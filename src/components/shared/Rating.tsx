@@ -34,6 +34,9 @@ gap : 0.1em;
 const RatingStarSpan = styled.div`
     font-size : 1.3em;
     color : #c3cedb;
+    @media only screen and (max-width: 480px) {
+        font-size : 1em;
+    }
 `
 
 const RatingSpan = styled.span`

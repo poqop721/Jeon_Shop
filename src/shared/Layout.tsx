@@ -30,6 +30,13 @@ const FooterDiv = styled.div`
   & span{
     font-weight : 500;
   }
+  @media only screen and (max-width: 480px) {
+    height: auto;
+    gap : 0.3em 0em;
+    font-size : 0.7em;
+    flex-direction : column;
+    padding : 0.7em 0;
+  }
 `
 
 const FooterA = styled.a`
@@ -55,9 +62,9 @@ function Header() {
 function Footer() {
   return (
     <FooterDiv>
-      <span>전성태</span> | 
-      <span>010-2498-8175</span> | 
-      <span><FooterA href="mailto:poqop721@naver.com">poqop721@naver.com</FooterA></span> | 
+      <span>전성태</span>
+      <span>010-2498-8175</span>
+      <span><FooterA href="mailto:poqop721@naver.com">poqop721@naver.com</FooterA></span>
       <span><FooterA href="https://github.com/poqop721">https://github.com/poqop721</FooterA></span>
     </FooterDiv>
   );

@@ -27,4 +27,8 @@ const CardsWrapperDiv = styled.div`
     grid-template-columns : repeat(2,1fr);
     gap : 2em 1.5em;
     margin: 50px 0;
+    @media only screen and (max-width: 480px) {
+        gap : 1em 1em;
+        margin: 10px 0 30px 0;
+    }
 `

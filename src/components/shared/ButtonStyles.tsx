@@ -4,6 +4,9 @@ const DefaultButtonStyle = css`
     border : 0px;
     border-radius : 10px;
     cursor : pointer;
+    @media only screen and (max-width: 480px) {
+        border-radius : 0px;
+    }
 `
 
 const BlueButtonStyle = styled.button`
@@ -32,6 +35,11 @@ const HomeButtonStyle = css`
     font-size : 1.15em;
     font-weight:600;
     cursor : pointer;
+    @media only screen and (max-width: 480px) {
+        width : 100%;
+        border-radius : 0px;
+        border : 0px;
+    }
 `
 
 export const HomeSeeMoreButton = styled(BlueButtonStyle)<{ $display: boolean }>`
@@ -50,6 +58,9 @@ const ProductButtonStyle = css`
     height : 2.5em;
     font-size : 1.25em;
     font-weight : 600;
+    @media only screen and (max-width: 480px) {
+        width : 100%;
+    }
 `
 
 export const SubmitButton = styled(BlueButtonStyle)`

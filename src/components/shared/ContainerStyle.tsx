@@ -9,4 +9,7 @@ export const ContainerDiv = styled.div`
     justify-content : center;
     align-items:center;
     margin : 2em;
+    @media only screen and (max-width: 480px) {
+        margin : 0em;
+    }
 `

@@ -53,6 +53,14 @@ const CardsItemLi = styled.li`
         transform: scale(1.1);
         transition: transform 0.3s;
     }
+    @media only screen and (max-width: 480px) {
+        padding : 7px;
+        gap : 10px;
+        &:hover .imgDiv {
+            transform: none;
+            transition: none;
+        }
+    }
 `
 
 const ImageContainerDiv = styled.div`
@@ -67,19 +75,36 @@ const ImageContainerDiv = styled.div`
         inset: 0;
         box-shadow:inset 0px 1px 13px #bdbdbd;
     }
+    @media only screen and (max-width: 480px) {
+        width : 100%;
+        height : 120px;
+      }
 `
 
 const PriceSpan = styled.span`
     font-size : 1.2em;
     font-weight : 700;
+    @media only screen and (max-width: 480px) {
+        font-size : 1em;
+        font-weight : 600;
+    }
 `
 
 const InfoDiv = styled.div`
     padding : 0 0.7em;
     line-height : 1.9em;
+    margin: auto 0;
+    @media only screen and (max-width: 480px) {
+        padding : 0 0.3em;
+        line-height : 1.5em;
+    }
 `
 
 const BrandTitleDiv = styled.div`
     font-size : 1.2em;
     font-weight : 700;
+    @media only screen and (max-width: 480px) {
+        font-size : 1em;
+        font-weight : 600;
+    }
 `
