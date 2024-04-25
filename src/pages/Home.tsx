@@ -19,7 +19,7 @@ export interface Item {
     price: number,
     brand: string,
     thumbnail: string,
-    description?: string,
+    description: string,
     discountPercentage: number,
     rating: number,
     stock: number,
