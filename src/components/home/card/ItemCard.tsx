@@ -17,7 +17,7 @@ function ItemCard({ item }: ItemCardProps) {
     return (
         <CardsItemLi onClick={() => { navigate(`/product/${item.id}`) }}>
             <ImageContainerDiv>
-                <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }} $page={'home'}>
+                <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }}>
                     <Image src={item.thumbnail} alt={item.title} />
                 </ImageDiv>
             </ImageContainerDiv>
@@ -49,17 +49,15 @@ const CardsItemLi = styled.li`
     &:hover .title {
         color : blue;
     }
-    &:hover .imgDiv {
-        transform: scale(1.1);
-        transition: transform 0.3s;
+    @media (hover: hover) {
+        &:hover .imgDiv {
+            transform: scale(1.1);
+            transition: transform 0.3s;
+        }
     }
     @media only screen and (max-width: 480px) {
         padding : 7px;
         gap : 10px;
-        &:hover .imgDiv {
-            transform: none;
-            transition: none;
-        }
     }
 `
 

@@ -22,7 +22,6 @@ export default React.memo(CardsWrapper)
 
 const CardsWrapperDiv = styled.div`
     width: 90%;
-    height : 100%;
     display : grid;
     grid-template-columns : repeat(2,1fr);
     gap : 2em 1.5em;
