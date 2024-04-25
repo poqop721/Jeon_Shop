@@ -23,5 +23,8 @@ export default ProductContainer
 const ProductContainerDiv = styled(ContainerDiv)`
     width : 100%;
     background-color : white;
-    padding : 4em;
+    padding : 4em 0;
+    @media only screen and (max-width: 480px) {
+        padding : 1.5em 0em;
+    }
 `

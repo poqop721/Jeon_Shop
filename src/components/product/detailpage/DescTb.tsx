@@ -42,6 +42,10 @@ const DescTable = styled.table`
     max-width : 100%;
     font-size : 1.4em;
     color : #03001d;
+    @media only screen and (max-width: 480px) {
+        margin-top : 1em;
+        font-size : 1em;
+    }
 `
 
 const Tr = styled.tr`
@@ -55,5 +59,12 @@ padding : 1em;
 &:first-child{
     width : 6em;
     font-weight : 800;
+}
+@media only screen and (max-width: 480px) {
+    padding : 0.3em;
+    &:first-child{
+        width : 6em;
+        font-weight : 700;
+    }
 }
 `

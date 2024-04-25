@@ -11,7 +11,7 @@ function DetailPage({ item }: DetailPageProps) {
         <DetailPageDiv>
             {item?.images?.map((url, idx) => {
                 return (
-                    <img key={idx} src={url} alt={`image_${idx}`} />
+                    <img key={idx} src={url} alt={`image_${idx}`} width={'100%'} />
                 )
             })}
             <DescTb item={item} />
@@ -28,4 +28,8 @@ const DetailPageDiv = styled.div`
     display : flex;
     flex-direction : column;
     gap : 3em;
+    @media only screen and (max-width: 480px) {
+        margin-top : 2em;
+        padding : 1em;
+    }
 `
