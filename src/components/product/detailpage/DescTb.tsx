@@ -53,6 +53,9 @@ border-top : 2px solid #353247;
 &:first-child{
     border-top : 0px;
 }
+@media only screen and (max-width: 480px) {
+    border-top : 1px solid #353247;
+}
 `
 const Td = styled.td`
 padding : 1em;
