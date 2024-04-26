@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { Item } from "../../../pages/Home";
 import Rating from "../../shared/Rating";
 import Price from "../../shared/Price";
+import getDiscountInfo from "../../shared/getDiscountInfo";
 
 interface InfoProps {
     item: Item | undefined,
 }
 
 function Info({ item }: InfoProps) {
-    const isDiscount = item?.discountPercentage !== 0
-    const discountPrice = item?.price && item?.discountPercentage ? ~~(item.price * ((100 - item.discountPercentage) / 100)) : 0;
+    const [isDiscount, discountPrice] = getDiscountInfo(item)
     
     return (
         <InfoDiv>

@@ -27,6 +27,7 @@ export interface Item {
     images: Array<string>
 }
 
+
 function Home() {
     const [keyword, setKeyword] = useAtom<string>(keywordAtom)
     const [limit, setLimit] = useAtom<number>(limitAtom)

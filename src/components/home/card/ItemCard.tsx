@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { ImageDiv, Image } from "../../shared/ImageDivStyle"
 import Rating from "../../shared/Rating"
 import Price from "../../shared/Price"
+import getDiscountInfo from "../../shared/getDiscountInfo"
 
 interface ItemCardProps {
     item: Item,
@@ -11,8 +12,7 @@ interface ItemCardProps {
 
 function ItemCard({ item }: ItemCardProps) {
     const navigate = useNavigate()
-    const isDiscount = item.discountPercentage !== 0
-    const discountPrice = ~~(item.price * ((100 - item.discountPercentage) / 100))
+    const [isDiscount, discountPrice] = getDiscountInfo(item)
 
     return (
         <CardsItemLi onClick={() => { navigate(`/product/${item.id}`) }}>
