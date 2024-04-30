@@ -5,11 +5,11 @@ import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
 import CustomIpt from "../components/home/CustomInput";
 import SeeMoreBtn from "../components/home/SeeMoreButton";
-import { ContainerDiv } from "../components/shared/ContainerStyle";
+import { ContainerDiv } from "../components/sharedComponent/ContainerStyle";
 import NoResult from "../components/home/NoResult";
 import CustomForm from "../components/home/CustomForm";
-import CustomBtn from "../components/shared/CustomButton";
-import { SubmitButton } from "../components/shared/ButtonStyles";
+import CustomBtn from "../components/sharedComponent/CustomButton";
+import { SubmitButton } from "../components/sharedComponent/ButtonStyles";
 import styled from "styled-components";
 
 

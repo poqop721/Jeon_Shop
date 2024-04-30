@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import { Item } from "../../../pages/Home"
 import { useNavigate } from "react-router-dom"
-import { ImageDiv, Image } from "../../shared/ImageDivStyle"
-import Rating from "../../shared/Rating"
-import Price from "../../shared/Price"
-import getDiscountInfo from "../../shared/getDiscountInfo"
+import { ImageDiv, Image } from "../../sharedComponent/ImageDivStyle"
+import Rating from "../../sharedComponent/Rating"
+import Price from "../../sharedComponent/Price"
+import getDiscountInfo from "../../sharedFunction/getDiscountInfo"
 
 interface ItemCardProps {
     item: Item,

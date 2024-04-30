@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Item } from "../../../pages/Home";
-import Rating from "../../shared/Rating";
-import Price from "../../shared/Price";
-import getDiscountInfo from "../../shared/getDiscountInfo";
+import Rating from "../../sharedComponent/Rating";
+import Price from "../../sharedComponent/Price";
+import getDiscountInfo from "../../sharedFunction/getDiscountInfo";
 
 interface InfoProps {
     item: Item | undefined,

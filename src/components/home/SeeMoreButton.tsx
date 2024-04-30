@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from "react";
-import { HomeSeeMoreButton, HomeGoUpButton } from "../shared/ButtonStyles";
+import { HomeSeeMoreButton, HomeGoUpButton } from "../sharedComponent/ButtonStyles";
 
 interface SeeMoreBtnProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>,

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Item } from "./Home"
-import { ContainerDiv } from "../components/shared/ContainerStyle"
-import CustomBtn from "../components/shared/CustomButton"
-import { ProductGoToListButton, ProductGoUpButton } from "../components/shared/ButtonStyles"
+import { ContainerDiv } from "../components/sharedComponent/ContainerStyle"
+import CustomBtn from "../components/sharedComponent/CustomButton"
+import { ProductGoToListButton, ProductGoUpButton } from "../components/sharedComponent/ButtonStyles"
 import ProductContainer from "../components/product/ProductContainer"
 
 

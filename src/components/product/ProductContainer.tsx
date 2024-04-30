@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Item } from "../../pages/Home"
 import DetailPage from "./detailpage/DetailPage"
 import InfoBox from "./infobox/InfoBox"
-import { ContainerDiv } from "../shared/ContainerStyle"
+import { ContainerDiv } from "../sharedComponent/ContainerStyle"
 
 interface ProductContainerProps {
     item: Item | undefined,
