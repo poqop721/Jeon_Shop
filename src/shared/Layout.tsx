@@ -60,7 +60,8 @@ const CartBtn = styled.button`
   display:flex;
   background-color : transparent;
   cursor : pointer;
-  margin-right : 1em;
+  margin-right : 0.3em;
+  width : fit-content;
 `
 
 function Header() {

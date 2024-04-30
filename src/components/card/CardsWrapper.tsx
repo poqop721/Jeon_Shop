@@ -32,13 +32,15 @@ const CardsWrapperDiv = styled.div<{ $page: string }>`
     ` : `
     display : flex;
     flex-direction : column;
-    background-color : white;
-    margin: 2em 0;
     padding : 2em;
     `)}
     gap : 2em 1.5em;
     @media only screen and (max-width: 480px) {
         gap : 1em 1em;
+        ${(props) => props.$page === '/' ? `
         margin: 1.5em 0 2em 0;
+        `:`
+        margin: 0;
+        `}
     }
 `

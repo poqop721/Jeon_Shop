@@ -59,7 +59,7 @@ const FixQuantDiv = styled.div`
     display : flex;
     flex-direction : column;
     align-items : center;
-    margin-left : 0.7em;
+    margin-left : 0.3em;
     @media only screen and (max-width: 480px) {
         flex-direction : row;
     }
@@ -71,9 +71,11 @@ const FixInfoBtn = styled.button`
     background-color : transparent;
     border : 1px solid transparent;
     cursor : pointer;
-    &:hover {
-        border : 1px solid #9e9e9e;
-        border-radius : 5px;
+    @media (hover: hover) {
+        &:hover {
+            border : 1px solid #9e9e9e;
+            border-radius : 5px;
+        }
     }
     @media only screen and (max-width: 480px) {
         transform: rotate(-90deg);
