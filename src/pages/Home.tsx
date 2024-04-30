@@ -85,7 +85,7 @@ function Home() {
                 {keyword === '' ? '' : <SearchResultDiv>검색 결과 : {total}</SearchResultDiv>}
                 <CustomBtn type={"submit"} text={"검색"} styleComponent={SubmitButton} onClick={null} />
             </CustomForm>
-            {products.length ? <CardsWrapper products={products}/> : <NoResult />}
+            {products.length ? <CardsWrapper products={products} dragged={false}/> : <NoResult />}
             <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} totalPage={Math.ceil(total / 10)} curPage={limit / 10} disabled={seeMoreBtnDisabled}/>
         </ContainerDiv>
     )

@@ -25,7 +25,9 @@ function Cart(){
 
     return(
         <ContainerDiv>
-            <CardsWrapper products={products}/>
+            <CardsWrapper products={products} dragged={false}/>
+            --------
+            <CardsWrapper products={products} dragged={true}/>
         </ContainerDiv>
     )
 }

@@ -6,15 +6,16 @@ import { useLocation } from "react-router-dom";
 
 interface CardsWrapperProps {
     products: Item[],
+    dragged : boolean
 }
 
-function CardsWrapper({ products }: CardsWrapperProps) {
+function CardsWrapper({ products, dragged }: CardsWrapperProps) {
     const location = useLocation()
     console.log(location.pathname)
     return (
         <CardsWrapperDiv $page={location.pathname}>
             {products.map((item: Item) => (
-                <ItemCard key={item.id} item={item}/>
+                <ItemCard key={item.id} item={item} dragged={dragged}/>
             ))}
         </CardsWrapperDiv>
     )

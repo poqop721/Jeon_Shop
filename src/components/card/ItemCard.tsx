@@ -7,15 +7,20 @@ import Price from "../sharedComponent/Price"
 import getDiscountInfo from "../sharedFunction/getDiscountInfo"
 import TotalInfo from "../cart/TotalInfo"
 import { SlTrash } from "react-icons/sl";
+import Draggable from "../cart/Draggable"
+import { useAtom } from "jotai"
+import { draggedItemsAtom } from "../../atoms/dragDropAtom"
 
 interface ItemCardProps {
     item: Item,
+    dragged : boolean
 }
 
-function ItemCard({ item }: ItemCardProps) {
+function ItemCard({ item, dragged }: ItemCardProps) {
     const navigate = useNavigate()
     const location = useLocation()
     const [isDiscount, discountPrice] = getDiscountInfo(item)
+    const [draggedItems,] = useAtom(draggedItemsAtom)
 
     const goToProduct = (activate: boolean) => {
         if (activate) navigate(`/product/${item.id}`)
@@ -46,15 +51,25 @@ function ItemCard({ item }: ItemCardProps) {
         }
     }
 
+    const CardItem = () =>{
+        return(
+            <CardsItemLi onClick={() => { goToProduct(location.pathname === '/' ? true : false) }} $page={location.pathname}>
+                <ImageContainerDiv $page={location.pathname}>
+                    <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }}>
+                        <Image src={item.thumbnail} alt={item.title} />
+                    </ImageDiv>
+                </ImageContainerDiv>
+                <Info />
+            </CardsItemLi>
+        )
+    }
+
     return (
-        <CardsItemLi onClick={() => { goToProduct(location.pathname === '/' ? true : false) }} $page={location.pathname}>
-            <ImageContainerDiv $page={location.pathname}>
-                <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }}>
-                    <Image src={item.thumbnail} alt={item.title} />
-                </ImageDiv>
-            </ImageContainerDiv>
-            <Info />
-        </CardsItemLi>
+        <>
+            {location.pathname === '/' ? <CardItem/> : 
+            dragged ? draggedItems.length ? <Draggable id={item.id}><CardItem/></Draggable> : null
+            : <Draggable id={item.id}><CardItem/></Draggable>}
+        </>
     )
 }
 
