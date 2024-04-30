@@ -3,6 +3,9 @@ import { Item } from "../../pages/Home";
 import ItemCard from "./ItemCard";
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { Droppable } from "../cart/Droppable";
+import { useAtom } from "jotai";
+import { draggedItemsAtom } from "../../atoms/dragDropAtom";
 
 interface CardsWrapperProps {
     products: Item[],
@@ -11,12 +14,35 @@ interface CardsWrapperProps {
 
 function CardsWrapper({ products, dragged }: CardsWrapperProps) {
     const location = useLocation()
-    console.log(location.pathname)
+    const [draggedItems,] = useAtom(draggedItemsAtom)
+
+    const CardsWrapperOrigin = () => {
+        return(
+            <>
+            {products.map((item: Item) => {
+                if(!draggedItems.includes(item.id.toString()))
+                    return <ItemCard key={item.id} item={item}/>
+            })}
+            </>
+        )
+    }
+    const CardsWrapperDropped = () => {
+        return(
+            <>
+            <DropDiv>
+            {products.map((item: Item) => {
+                if(draggedItems.includes(item.id.toString()))
+                    return <ItemCard key={item.id} item={item}/>
+            })}
+            </DropDiv>
+            </>
+        )
+    }
+
     return (
         <CardsWrapperDiv $page={location.pathname}>
-            {products.map((item: Item) => (
-                <ItemCard key={item.id} item={item} dragged={dragged}/>
-            ))}
+            {location.pathname === '/' ? <CardsWrapperOrigin/> : 
+            dragged?<Droppable id='droppedDiv'><CardsWrapperDropped/></Droppable>:<CardsWrapperOrigin/>}
         </CardsWrapperDiv>
     )
 }
@@ -25,12 +51,12 @@ export default React.memo(CardsWrapper)
 
 
 const CardsWrapperDiv = styled.div<{ $page: string }>`
-    width: 90%;
     ${(props) => (props.$page === '/' ? `
     display : grid;
     grid-template-columns : repeat(2,1fr);
     margin: 3em 0;
     ` : `
+    width : 90%;
     display : flex;
     flex-direction : column;
     padding : 2em;
@@ -44,4 +70,11 @@ const CardsWrapperDiv = styled.div<{ $page: string }>`
         margin: 0;
         `}
     }
+`
+
+const DropDiv = styled.div`
+    display : flex;
+    flex-direction : column;
+    gap : 2em 1.5em;
+    min-height : 3em;
 `

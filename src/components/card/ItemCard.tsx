@@ -8,19 +8,15 @@ import getDiscountInfo from "../sharedFunction/getDiscountInfo"
 import TotalInfo from "../cart/TotalInfo"
 import { SlTrash } from "react-icons/sl";
 import Draggable from "../cart/Draggable"
-import { useAtom } from "jotai"
-import { draggedItemsAtom } from "../../atoms/dragDropAtom"
 
 interface ItemCardProps {
     item: Item,
-    dragged : boolean
 }
 
-function ItemCard({ item, dragged }: ItemCardProps) {
+function ItemCard({ item }: ItemCardProps) {
     const navigate = useNavigate()
     const location = useLocation()
     const [isDiscount, discountPrice] = getDiscountInfo(item)
-    const [draggedItems,] = useAtom(draggedItemsAtom)
 
     const goToProduct = (activate: boolean) => {
         if (activate) navigate(`/product/${item.id}`)
@@ -39,10 +35,10 @@ function ItemCard({ item, dragged }: ItemCardProps) {
             return (
                 <>
                 <InfoDiv $page="cart">
-                    <div>
+                    <InfoLeftDiv>
                         <BrandTitleDiv className="title" onClick={() => { goToProduct(location.pathname === '/' ? false : true) }}>{item.title}</BrandTitleDiv>
-                        <div><Price isDiscount={isDiscount} discountPrice={discountPrice} price={item.price} styleComponent={PriceSpan} page="cart" /></div>
-                    </div>
+                        <Price isDiscount={isDiscount} discountPrice={discountPrice} price={item.price} styleComponent={PriceSpan} page="cart" />
+                    </InfoLeftDiv>
                     <TotalInfo item={item} isDiscount={isDiscount} discountPrice={discountPrice} PriceSpan={PriceSpan}/>
                 </InfoDiv>
                 <TrashBtn onClick={()=>alert('구현중 입니다')}><SlTrash/></TrashBtn>
@@ -67,8 +63,7 @@ function ItemCard({ item, dragged }: ItemCardProps) {
     return (
         <>
             {location.pathname === '/' ? <CardItem/> : 
-            dragged ? draggedItems.length ? <Draggable id={item.id}><CardItem/></Draggable> : null
-            : <Draggable id={item.id}><CardItem/></Draggable>}
+            <Draggable id={item.id}><CardItem/></Draggable>}
         </>
     )
 }
@@ -153,7 +148,7 @@ const InfoDiv = styled.div<{ $page: string }>`
     margin: auto 0;
     ${(props) => props.$page === '/' ? `
     ` : `
-    width : 100%;
+    width : 90%;
     display : flex;
     justify-content : space-between;
     `}
@@ -181,4 +176,10 @@ const TrashBtn = styled.span`
     cursor : pointer;
     align-self : center;
     margin-right : 0.5em;
+`
+
+const InfoLeftDiv = styled.div`
+    display : flex;
+    flex-direction : column;
+    align-items: flex-start;
 `

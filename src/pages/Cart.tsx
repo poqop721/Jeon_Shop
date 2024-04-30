@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { ContainerDiv } from "../components/sharedComponent/ContainerStyle"
 import { Item } from "./Home";
+import { DndContext } from "@dnd-kit/core";
+import { useAtom } from "jotai";
+import { draggedItemsAtom } from "../atoms/dragDropAtom";
 import CardsWrapper from "../components/card/CardsWrapper";
 
 function Cart(){
     const [products, setProducts] = useState<Item[]>([])
+    const [, setDraggedItems] = useAtom(draggedItemsAtom)
     const id = 5
     
     useEffect(() => {
@@ -23,11 +27,18 @@ function Cart(){
         window.scrollTo(0, 0)
     }, [id])
 
+    function handleDragEnd(event : any) {
+        console.log(event)
+        if(event.over) setDraggedItems((prev)=>[...prev, event.active.id.toString()]);
+      }
+
     return(
         <ContainerDiv>
+            <DndContext onDragEnd={handleDragEnd}>
             <CardsWrapper products={products} dragged={false}/>
             --------
             <CardsWrapper products={products} dragged={true}/>
+            </DndContext>
         </ContainerDiv>
     )
 }
