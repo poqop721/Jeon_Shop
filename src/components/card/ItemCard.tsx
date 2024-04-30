@@ -7,6 +7,7 @@ import Price from "../sharedComponent/Price"
 import getDiscountInfo from "../sharedFunction/getDiscountInfo"
 import TotalInfo from "../cart/TotalInfo"
 import { SlTrash } from "react-icons/sl";
+import Draggable from "../cart/Draggable"
 
 interface ItemCardProps {
     item: Item,
@@ -34,10 +35,10 @@ function ItemCard({ item }: ItemCardProps) {
             return (
                 <>
                 <InfoDiv $page="cart">
-                    <div>
+                    <InfoLeftDiv>
                         <BrandTitleDiv className="title" onClick={() => { goToProduct(location.pathname === '/' ? false : true) }}>{item.title}</BrandTitleDiv>
-                        <div><Price isDiscount={isDiscount} discountPrice={discountPrice} price={item.price} styleComponent={PriceSpan} page="cart" /></div>
-                    </div>
+                        <Price isDiscount={isDiscount} discountPrice={discountPrice} price={item.price} styleComponent={PriceSpan} page="cart" />
+                    </InfoLeftDiv>
                     <TotalInfo item={item} isDiscount={isDiscount} discountPrice={discountPrice} PriceSpan={PriceSpan}/>
                 </InfoDiv>
                 <TrashBtn onClick={()=>alert('구현중 입니다')}><SlTrash/></TrashBtn>
@@ -46,15 +47,24 @@ function ItemCard({ item }: ItemCardProps) {
         }
     }
 
+    const CardItem = () =>{
+        return(
+            <CardsItemLi onClick={() => { goToProduct(location.pathname === '/' ? true : false) }} $page={location.pathname}>
+                <ImageContainerDiv $page={location.pathname}>
+                    <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }}>
+                        <Image src={item.thumbnail} alt={item.title} />
+                    </ImageDiv>
+                </ImageContainerDiv>
+                <Info />
+            </CardsItemLi>
+        )
+    }
+
     return (
-        <CardsItemLi onClick={() => { goToProduct(location.pathname === '/' ? true : false) }} $page={location.pathname}>
-            <ImageContainerDiv $page={location.pathname}>
-                <ImageDiv className="imgDiv" style={{ backgroundImage: `url(${item.thumbnail})` }}>
-                    <Image src={item.thumbnail} alt={item.title} />
-                </ImageDiv>
-            </ImageContainerDiv>
-            <Info />
-        </CardsItemLi>
+        <>
+            {location.pathname === '/' ? <CardItem/> : 
+            <Draggable id={item.id}><CardItem/></Draggable>}
+        </>
     )
 }
 
@@ -138,7 +148,7 @@ const InfoDiv = styled.div<{ $page: string }>`
     margin: auto 0;
     ${(props) => props.$page === '/' ? `
     ` : `
-    width : 100%;
+    width : 90%;
     display : flex;
     justify-content : space-between;
     `}
@@ -166,4 +176,10 @@ const TrashBtn = styled.span`
     cursor : pointer;
     align-self : center;
     margin-right : 0.5em;
+`
+
+const InfoLeftDiv = styled.div`
+    display : flex;
+    flex-direction : column;
+    align-items: flex-start;
 `
