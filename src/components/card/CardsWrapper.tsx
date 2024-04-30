@@ -29,12 +29,10 @@ function CardsWrapper({ products, dragged }: CardsWrapperProps) {
     const CardsWrapperDropped = () => {
         return(
             <>
-            <DropDiv>
             {products.map((item: Item) => {
                 if(draggedItems.includes(item.id.toString()))
                     return <ItemCard key={item.id} item={item}/>
             })}
-            </DropDiv>
             </>
         )
     }
@@ -56,7 +54,7 @@ const CardsWrapperDiv = styled.div<{ $page: string }>`
     grid-template-columns : repeat(2,1fr);
     margin: 3em 0;
     ` : `
-    width : 90%;
+    width : -webkit-fill-available;
     display : flex;
     flex-direction : column;
     padding : 2em;
@@ -70,11 +68,4 @@ const CardsWrapperDiv = styled.div<{ $page: string }>`
         margin: 0;
         `}
     }
-`
-
-const DropDiv = styled.div`
-    display : flex;
-    flex-direction : column;
-    gap : 2em 1.5em;
-    min-height : 3em;
 `

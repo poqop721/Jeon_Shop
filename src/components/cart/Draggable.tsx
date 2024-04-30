@@ -9,6 +9,8 @@ function Draggable(props : any) {
     // Outputs `translate3d(x, y, 0)`
     transform: CSS.Translate.toString(transform),
     border : '0px',
+    backgroundColor : 'transparent',
+    width : '100%',
   };
 
   return (
