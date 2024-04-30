@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CardsWrapper from "../components/home/card/CardsWrapper";
+import CardsWrapper from "../components/card/CardsWrapper";
 import { useRecordScroll } from "../hooks/useRecordScroll";
 import { keywordAtom, limitAtom } from "../atoms/prevPageAtom";
 import { useAtom } from "jotai";
@@ -24,7 +24,8 @@ export interface Item {
     rating: number,
     stock: number,
     category: string,
-    images: Array<string>
+    images: Array<string>,
+    quantity : number,
 }
 
 
@@ -84,7 +85,7 @@ function Home() {
                 {keyword === '' ? '' : <SearchResultDiv>검색 결과 : {total}</SearchResultDiv>}
                 <CustomBtn type={"submit"} text={"검색"} styleComponent={SubmitButton} onClick={null} />
             </CustomForm>
-            {products.length ? <CardsWrapper products={products} /> : <NoResult />}
+            {products.length ? <CardsWrapper products={products}/> : <NoResult />}
             <SeeMoreBtn onClick={seeMore} limit={limit} isEnd={isEnd} totalPage={Math.ceil(total / 10)} curPage={limit / 10} disabled={seeMoreBtnDisabled}/>
         </ContainerDiv>
     )

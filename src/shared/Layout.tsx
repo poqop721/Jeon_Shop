@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const HeaderDiv = styled.div`
@@ -6,6 +7,7 @@ const HeaderDiv = styled.div`
   width : 100%;
   height: 40px;
   display: flex;
+  justify-content : space-between;
   align-items: center;
 `
 
@@ -52,9 +54,11 @@ const LayoutDiv = styled.div`
 `
 
 function Header() {
+  const navigate = useNavigate()
   return (
     <HeaderDiv>
       <HeaderLogoA href='/'>Jeon's Shop</HeaderLogoA>
+      <button onClick={()=>navigate('cart')}>카트</button>
     </HeaderDiv>
   );
 }

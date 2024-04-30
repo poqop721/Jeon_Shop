@@ -6,22 +6,23 @@ interface PriceProps {
     price: number,
     styleComponent: React.ComponentType<any>,
     page: string,
+    quantity? : number,
 }
 
-function Price({ isDiscount, price, discountPrice, styleComponent, page }: PriceProps) {
+function Price({ isDiscount, price, discountPrice, styleComponent, page , quantity}: PriceProps) {
     const StyleSpan = styleComponent
     return (
-        <PriceDiv $page={page}>
-            <StyleSpan className={isDiscount ? 'linethrough' : ''}>{price}$</StyleSpan>
-            {isDiscount ? <StyleSpan>{discountPrice}$</StyleSpan> : ''}
-        </PriceDiv>
+        <PriceSpan $page={page}>
+            <StyleSpan className={isDiscount ? 'linethrough' : ''}>{quantity?price * quantity:price }$</StyleSpan>
+            {isDiscount ? <StyleSpan>{quantity?discountPrice * quantity:discountPrice}$</StyleSpan> : ''}
+        </PriceSpan>
     )
 }
 
 export default Price
 
 
-export const PriceDiv = styled.div<{ $page: string }>`
+export const PriceSpan = styled.span<{ $page: string }>`
 ${(prop) => prop.$page === 'product' ? `
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #e6e6e6;

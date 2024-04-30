@@ -23,7 +23,8 @@ const Form = styled.form`
     align-items : center;
     border : 4px solid #4287f5;
     border-radius : 20px;
-    margin : 1em 4em;
+    margin : 1.5em 4em;
+    margin-bottom : 0;
     z-index : 0;
     background-color : white;
 `
