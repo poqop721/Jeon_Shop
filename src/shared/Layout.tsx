@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { CiShoppingCart } from "react-icons/ci";
 
 const HeaderDiv = styled.div`
   background-color : white;
@@ -15,7 +16,7 @@ const HeaderLogoA = styled.a`
   color : #4d4d4d;
   font-size : 1.2em;
   font-weight : 600;
-  padding-left: 20px;
+  margin-left: 1em;
   text-decoration : none;
 `
 
@@ -53,12 +54,21 @@ const LayoutDiv = styled.div`
   background-color : #ededed;
 `
 
+const CartBtn = styled.button`
+  border : 0px;
+  font-size : 1.5em;
+  display:flex;
+  background-color : transparent;
+  cursor : pointer;
+  margin-right : 1em;
+`
+
 function Header() {
   const navigate = useNavigate()
   return (
     <HeaderDiv>
       <HeaderLogoA href='/'>Jeon's Shop</HeaderLogoA>
-      <button onClick={()=>navigate('cart')}>카트</button>
+      <CartBtn onClick={()=>navigate('cart')}><CiShoppingCart /></CartBtn>
     </HeaderDiv>
   );
 }
