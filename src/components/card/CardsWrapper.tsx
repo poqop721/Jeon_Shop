@@ -25,7 +25,8 @@ function CardsWrapper({ products, dragged }: CardsWrapperProps) {
             {products.map((item: Item) => {
                 if(!draggedItems.includes(item.id.toString())){
                     count++
-                    return <><ItemCard key={item.id} item={item}/><LineDiv className="line"/></>
+                    if(location.pathname === '/') return <ItemCard key={item.id} item={item}/>
+                    else return <><ItemCard key={item.id} item={item}/><LineDiv className="line"/></>
                 }
             })}
             {!count ? <PayTitleSpan>
