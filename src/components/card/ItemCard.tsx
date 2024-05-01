@@ -78,17 +78,16 @@ const CardsItemLi = styled.li<{ $page: string }>`
     ${(props) => props.$page === '/' ? `
         flex-direction : column;    
         cursor : pointer;
-    ` : `
+        box-shadow : 0px 8px 23px #b0b0b0;
+        ` : `
         flex-direction : row;    
-        cursor : initial;
-    `}
+        cursor : grab;
+        `}
+    border : 0px;
     border-radius: 10px;
-    border : 1px solid gray;
     padding : 10px;
     gap : 1em;
-    box-shadow : 0px 8px 23px #b0b0b0;
     background-color : white;
-    border : 0px;
     &:hover .title {
         color : blue;
     }
@@ -126,10 +125,9 @@ const ImageContainerDiv = styled.div<{ $page: string }>`
             width : 100%;
             height : 120px;
         `: `
-        
-        `}
             width : 9em;
             height : 7em;
+        `}
       }
 `
 

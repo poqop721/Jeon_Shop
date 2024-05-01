@@ -1,5 +1,7 @@
 import {useDraggable} from '@dnd-kit/core';
 import {CSS} from '@dnd-kit/utilities';
+import { hover } from '@testing-library/user-event/dist/hover';
+import styled from 'styled-components';
 
 function Draggable(props : any) {
   const {attributes, listeners, setNodeRef, transform} = useDraggable({
@@ -14,10 +16,18 @@ function Draggable(props : any) {
   };
 
   return (
-    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <DragDiv ref={setNodeRef} style={style} {...listeners} {...attributes}>
       {props.children}
-    </div>
+    </DragDiv>
   );
 }
 
 export default Draggable
+
+const DragDiv = styled.div`
+  border-radius : 10px;
+  &:hover{
+    z-index : 1000;
+    box-shadow : 0px 8px 23px #b0b0b0;
+  }
+`

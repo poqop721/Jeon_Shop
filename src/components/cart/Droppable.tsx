@@ -21,7 +21,7 @@ const DropDiv = styled.div`
   width : 100%;
   display : flex;
   flex-direction : column;
-  gap : 2em 1.5em;
+  gap : 0.5em 1.5em;
   min-height : 3em;
   align-items : center;
   justify-content : center;

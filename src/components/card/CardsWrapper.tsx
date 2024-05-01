@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Item } from "../../pages/Home";
 import ItemCard from "./ItemCard";
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import { Droppable } from "../cart/Droppable";
 import { useAtom } from "jotai";
@@ -25,7 +25,7 @@ function CardsWrapper({ products, dragged }: CardsWrapperProps) {
             {products.map((item: Item) => {
                 if(!draggedItems.includes(item.id.toString())){
                     count++
-                    return <ItemCard key={item.id} item={item}/>
+                    return <><ItemCard key={item.id} item={item}/><LineDiv className="line"/></>
                 }
             })}
             {!count ? <PayTitleSpan>
@@ -48,7 +48,7 @@ function CardsWrapper({ products, dragged }: CardsWrapperProps) {
                 if(draggedItems.includes(item.id.toString())){
                     let [,discountPrice] = getDiscountInfo(item)
                     totalSum += discountPrice * item.quantity
-                    return <ItemCard key={item.id} item={item}/>
+                    return <><ItemCard key={item.id} item={item}/><LineDiv className="line"/></>
                 }
             })}
             <TotalPriceDiv>총 결제 금액 <PriceTitleSpan>{totalSum} $</PriceTitleSpan> <CustomBtn type="button" text="결제하기" styleComponent={payBtn} onClick={()=>alert('구현중입니다')}/></TotalPriceDiv>
@@ -73,20 +73,27 @@ const CardsWrapperDiv = styled.div<{ $page: string }>`
     display : grid;
     grid-template-columns : repeat(2,1fr);
     margin: 3em 0;
+    gap : 2em 1.5em;
     ` : `
     width : -webkit-fill-available;
     display : flex;
     flex-direction : column;
     padding : 2em;
+    gap : 0.5em 1.5em;
+    border : 1px solid transparent;
     `)}
-    gap : 2em 1.5em;
     @media only screen and (max-width: 480px) {
         gap : 1em 1em;
         ${(props) => props.$page === '/' ? `
+        width : 90%;
         margin: 1.5em 0 2em 0;
         `:`
+        width : 90%;
         margin: 0;
         `}
+    }
+    & .line:last-child{
+        display : none;
     }
 `
 
@@ -132,4 +139,11 @@ const payBtn = styled.button`
         background-color : #166bf5;
     }
 
+`
+
+const LineDiv = styled.div`
+    align-self : center;
+    width : 98%;
+    height : 0.1px;
+    background-color : #cfcfcf;
 `
