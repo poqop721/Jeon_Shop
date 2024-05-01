@@ -16,7 +16,8 @@ function Cart(){
         if (id) {
             fetch(`https://dummyjson.com/carts/user/${id}`)
                 .then(res => res.json())
-                .then(data => { setProducts(data.carts[0].products)
+                .then(data => { 
+                    setProducts(data.carts[0].products)
                  })
                 .catch(error => {
                     alert('상품 정보를 갖고 오는데 문제가 발생했습니다.')
@@ -37,12 +38,12 @@ function Cart(){
     return(
         <ContainerDiv>
             <DndContext onDragEnd={handleDragEnd}>
-            <CardsWrapper products={products} dragged={false}/>
             <PayDiv>
-                <PayTitleSpan>결제창 - 아래로 결제할 상품을 끌고 와주세요.</PayTitleSpan>
-                <HrDiv></HrDiv>
+            <CardsWrapper products={products} dragged={false}/>
+            </PayDiv><br></br>
+            {products.length ? <PayDiv>
                 <CardsWrapper products={products} dragged={true}/>
-            </PayDiv>
+            </PayDiv> : <></>}
             </DndContext>
         </ContainerDiv>
     )
@@ -57,18 +58,4 @@ const PayDiv = styled.div`
     display : flex;
     flex-direction : column;
     align-items : center;
-`
-
-const PayTitleSpan = styled.span`
-    font-size : 1.5em;
-    font-weight : 700;
-    margin-top : 1.5em;
-    color : gray;
-`
-
-const HrDiv = styled.div`
-    background-color : #bfbfbf;
-    width : 90%;
-    height : 1px;
-    margin-top : 1.5em;
 `
