@@ -67,4 +67,7 @@ const PayDiv = styled.div`
     display : flex;
     flex-direction : column;
     align-items : center;
+    @media only screen and (max-width: 480px) {
+        width : 94%;
+    }
 `
