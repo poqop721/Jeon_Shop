@@ -11,57 +11,64 @@ import CustomBtn from "../sharedComponent/CustomButton";
 
 interface CardsWrapperProps {
     products: Item[],
-    dragged : boolean
+    dragged: boolean
 }
 
 function CardsWrapper({ products, dragged }: CardsWrapperProps) {
     const location = useLocation()
-    const [draggedItems,] = useAtom(draggedItemsAtom)
+    const [draggedItems, setDraggedItems] = useAtom(draggedItemsAtom)
 
     const CardsWrapperOrigin = () => {
         let count = 0
-        return(
+        return (
             <>
-            {products.map((item: Item) => {
-                if(!draggedItems.includes(item.id.toString())){
-                    count++
-                    if(location.pathname === '/') return <ItemCard key={item.id} item={item}/>
-                    else return <><ItemCard key={item.id} item={item}/><LineDiv className="line"/></>
-                }
-            })}
-            {!count ? <PayTitleSpan>
-                장바구니가 비어있습니다.
-            </PayTitleSpan> : <></>}
+                {products.map((item: Item) => {
+                    if (!draggedItems.includes(item.id.toString())) {
+                        count++
+                        if (location.pathname === '/') return <ItemCard key={item.id} item={item} />
+                        else return <><ItemCard key={item.id} item={item} /><LineDiv className="line" /></>
+                    }
+                })}
+                {!count ? <PayTitleSpan>
+                    장바구니가 비어있습니다.
+                </PayTitleSpan> : <></>}
             </>
         )
     }
     const CardsWrapperDropped = () => {
-        if(!draggedItems.length){
+        if (!draggedItems.length) {
             return <PayTitleSpan>
                 여기로 결제할 상품을 끌고 와주세요
             </PayTitleSpan>
         }
         else {
             let totalSum = 0
-            return(
-            <>
-            {products.map((item: Item) => {
-                if(draggedItems.includes(item.id.toString())){
-                    let [,discountPrice] = getDiscountInfo(item)
-                    totalSum += discountPrice * item.quantity
-                    return <><ItemCard key={item.id} item={item}/><LineDiv className="line"/></>
-                }
-            })}
-            <TotalPriceDiv>총 결제 금액 <PriceTitleSpan>{totalSum} $</PriceTitleSpan> <CustomBtn type="button" text="결제하기" styleComponent={payBtn} onClick={()=>alert('구현중입니다')}/></TotalPriceDiv>
-            </>
-        )
-    }
+            return (
+                <>
+                    {products.map((item: Item) => {
+                        if (draggedItems.includes(item.id.toString())) {
+                            let [, discountPrice] = getDiscountInfo(item)
+                            totalSum += discountPrice * item.quantity
+                            return <><ItemCard key={item.id} item={item} /><LineDiv className="line" /></>
+                        }
+                    })}
+                    <DroppableControlDiv>
+                        <CustomBtn type="button" text="비우기" styleComponent={DropBtn} onClick={() => setDraggedItems([])} styleProps={'empty'}/>
+                        <TotalPriceDiv>
+                            총 결제 금액 
+                            <PriceTitleSpan>{totalSum} $</PriceTitleSpan> 
+                            <CustomBtn type="button" text="결제하기" styleComponent={DropBtn} onClick={() => alert('구현중입니다')} styleProps={'pay'}/>
+                        </TotalPriceDiv>
+                    </DroppableControlDiv>
+                </>
+            )
+        }
     }
 
     return (
         <CardsWrapperDiv $page={location.pathname}>
-            {location.pathname === '/' ? <CardsWrapperOrigin/> : 
-            dragged?<Droppable id='droppedDiv'><CardsWrapperDropped/></Droppable>:<CardsWrapperOrigin/>}
+            {location.pathname === '/' ? <CardsWrapperOrigin /> :
+                dragged ? <Droppable id='droppedDiv'><CardsWrapperDropped /></Droppable> : <CardsWrapperOrigin />}
         </CardsWrapperDiv>
     )
 }
@@ -88,7 +95,7 @@ const CardsWrapperDiv = styled.div<{ $page: string }>`
         ${(props) => props.$page === '/' ? `
         width : 90%;
         margin: 1.5em 0 2em 0;
-        `:`
+        `: `
         width : 90%;
         margin: 0;
         `}
@@ -105,20 +112,6 @@ const PayTitleSpan = styled.span`
     align-self : center;
 `
 
-const TotalPriceDiv = styled.div`
-    width : 100%;
-    margin : 0.5em 0 0.2em 0;
-    font-size : 1.5em;
-    font-weight : 600;
-    color : #5c5c5c;
-    display : flex;
-    flex-direction : row;
-    align-items:center;
-    justify-content : flex-end;
-    gap : 0.5em;
-    margin-right : 0.5em;
-`
-
 const PriceTitleSpan = styled.span`
 font-weight : 800;
 background-color : #dbdbdb;
@@ -127,19 +120,18 @@ padding : 0.3em;
 color : #2d59fa;
 `
 
-const payBtn = styled.button`
-    font-size : 0.88em;
+const DropBtn = styled.button<{ $styleProps : string }>`
+    font-size : ${(props)=>props.$styleProps === 'pay' ? '0.88em' : '0.7em'};
     font-weight : 800;
     border : 0px;
     border-radius : 5px;
-    padding : 0.3em;
+    padding : ${(props)=>props.$styleProps === 'pay' ? '0.3em' : '0.3em'};
     cursor : pointer;
-    background-color : #4287f5;
+    background-color :  ${(props)=>props.$styleProps === 'pay' ? '#4287f5' : '#de5b5b'} ;
     color : white;
     &:hover{
-        background-color : #166bf5;
+        background-color : ${(props)=>props.$styleProps === 'pay' ? '#166bf5' : '#db3030'};
     }
-
 `
 
 const LineDiv = styled.div`
@@ -147,4 +139,24 @@ const LineDiv = styled.div`
     width : 98%;
     height : 0.1px;
     background-color : #cfcfcf;
+`
+
+
+const DroppableControlDiv = styled.div`
+    width : 98%;
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+    gap : 0.5em;
+    margin : 1em 0 0;
+    font-size : 1.5em;
+`
+
+const TotalPriceDiv = styled.div`
+    font-weight : 600;
+    color : #5c5c5c;
+    display : flex;
+    flex-direction : row;
+    align-items:center;
+    gap : 0.5em;
 `
