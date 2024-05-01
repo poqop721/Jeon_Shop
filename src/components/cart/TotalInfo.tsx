@@ -32,7 +32,7 @@ const TotalInfoDiv = styled.div`
         align-items : flex-start;
         flex-direction : column;
         gap : 0.2em;
-        font-size : 0.92em;
+        font-size : 0.8em;
     }
     `
     
@@ -52,6 +52,7 @@ const InfoPriceSpan = styled.span`
     align-items : center;
     @media only screen and (max-width: 480px) {
         padding : 0 0.3em;
+        margin-right : 0em;
     }
 `
 

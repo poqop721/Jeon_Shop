@@ -173,7 +173,6 @@ const TrashBtn = styled.span`
     padding : 0.3em 0em;
     cursor : pointer;
     align-self : center;
-    margin-right : 0.5em;
 `
 
 const InfoLeftDiv = styled.div`

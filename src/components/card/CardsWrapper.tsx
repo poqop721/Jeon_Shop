@@ -96,7 +96,7 @@ const CardsWrapperDiv = styled.div<{ $page: string }>`
         width : 90%;
         margin: 1.5em 0 2em 0;
         `: `
-        width : 90%;
+        padding : 1em;
         margin: 0;
         `}
     }
@@ -110,6 +110,9 @@ const PayTitleSpan = styled.span`
     font-weight : 700;
     color : gray;
     align-self : center;
+    @media only screen and (max-width: 480px) {
+        font-size : 1.1em;
+    }
 `
 
 const PriceTitleSpan = styled.span`
@@ -150,6 +153,9 @@ const DroppableControlDiv = styled.div`
     gap : 0.5em;
     margin : 1em 0 0;
     font-size : 1.5em;
+    @media only screen and (max-width: 480px) {
+        font-size : 1em;
+    }
 `
 
 const TotalPriceDiv = styled.div`

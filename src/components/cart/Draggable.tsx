@@ -1,6 +1,5 @@
 import {useDraggable} from '@dnd-kit/core';
 import {CSS} from '@dnd-kit/utilities';
-import { hover } from '@testing-library/user-event/dist/hover';
 import styled from 'styled-components';
 
 function Draggable(props : any) {
@@ -13,6 +12,7 @@ function Draggable(props : any) {
     border : '0px',
     backgroundColor : 'transparent',
     width : '100%',
+    touchAction : 'none',
   };
 
   return (
@@ -29,5 +29,6 @@ const DragDiv = styled.div`
   &:hover{
     z-index : 1000;
     box-shadow : 0px 8px 23px #b0b0b0;
+    touch-action : none;
   }
 `
