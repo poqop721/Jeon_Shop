@@ -96,7 +96,7 @@ const CardsWrapperDiv = styled.div<{ $page: string }>`
         width : 90%;
         margin: 1.5em 0 2em 0;
         `: `
-        padding : 1em;
+        padding : 0.3em;
         margin: 0;
         `}
     }
@@ -140,8 +140,11 @@ const DropBtn = styled.button<{ $styleProps : string }>`
 const LineDiv = styled.div`
     align-self : center;
     width : 98%;
-    height : 0.1px;
-    background-color : #cfcfcf;
+    height : 1px;
+    background-color : #dedede;
+    @media only screen and (max-width: 480px) {
+        width : 93%;
+    }
 `
 
 
@@ -155,6 +158,7 @@ const DroppableControlDiv = styled.div`
     font-size : 1.5em;
     @media only screen and (max-width: 480px) {
         font-size : 1em;
+        margin : 0.5em 0;
     }
 `
 

@@ -37,7 +37,7 @@ function Cart() {
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
-                distance: 8,
+                distance: 10,
             },
         })
     )
